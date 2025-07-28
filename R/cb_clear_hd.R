@@ -8,7 +8,7 @@
 #'
 #' @examples
 
-cb_clear_hard_drive <- function(path) {
+cb_clear_hd <- function(path) {
 
   # Ask for user confirmation
   confirmation <- readline(prompt = stringr::str_glue("Are you sure you want to delete all contents of {path}? Type 'yes' to confirm: "))
@@ -23,6 +23,7 @@ cb_clear_hard_drive <- function(path) {
       fs::dir_ls(path) |>
         stringr::str_subset('RECYCLE', negate = TRUE)
     )
+
     cat("Contents of the hard drive have been deleted.\n")
 
   } else {
