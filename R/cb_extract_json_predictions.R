@@ -14,10 +14,11 @@ cb_extract_json_predictions <- function(path, species_thresholds = species_thres
 
   # get name of file first for saving things later
   file_name <- stringr::str_extract(path, 'G(P|R|C|M|0)[0-9]{2}_V[1-5]{1}_C[0-9]{4}_U[1-5]{1}_[0-9]{8}_[0-9]{6}')
+  # and start time of the file
   file_date_time <- lubridate::ymd_hms(stringr::str_extract(file_name, '[0-9]{8}_[0-9]{6}'))
   rounded_file_start_time <- hms::as_hms(lubridate::round_date(file_date_time, 'hour'))
 
-  # read json (shouldn't be any errors at this point)
+  # read json (there shouldn't be any errors at this point)
   json_df <-
     jsonlite::fromJSON(path) |>
     # turn into data frame where every row is a list
@@ -31,7 +32,7 @@ cb_extract_json_predictions <- function(path, species_thresholds = species_thres
     tidyr::unnest(cols = c(value)) |>
     tidyr::unnest(cols = c(value))
 
-  # some can parse but have no detections
+  # some can parse but have no detections; save # of predictions per file here
   tibble::tibble(
     path = basename(file_name),
     n_predictions = dim(json_df)[1]
@@ -43,6 +44,7 @@ cb_extract_json_predictions <- function(path, species_thresholds = species_thres
       append = TRUE
     )
 
+  # get predictions for times just corresponding to CSOW/BDOW/forest owls
   if (rounded_file_start_time %in% csow_bdow_forest_owl_hours) {
 
     # owl outputs only
@@ -61,6 +63,7 @@ cb_extract_json_predictions <- function(path, species_thresholds = species_thres
       ) |>
       dplyr::filter(value >= logit_threshold)
 
+    # and save if there are any predictions above the thresholds
     if (dim(json_df)[1] > 0) {
 
     json_df <-
@@ -71,6 +74,7 @@ cb_extract_json_predictions <- function(path, species_thresholds = species_thres
 
     }
 
+    # get predictions for times corresponding to all birds
   } else if (rounded_file_start_time %in% all_bird_hours) {
 
     # all outputs
@@ -89,6 +93,7 @@ cb_extract_json_predictions <- function(path, species_thresholds = species_thres
       ) |>
       dplyr::filter(value >= logit_threshold)
 
+    # and save if there are any predictions above thresholds
     if (dim(json_df)[1] > 0) {
 
       json_df <-
@@ -99,6 +104,7 @@ cb_extract_json_predictions <- function(path, species_thresholds = species_thres
 
     }
 
+    # get predictions for times just corresponding to diurnal birds
   } else if (rounded_file_start_time %in% diurnal_bird_hours) {
 
     # diurnal outputs only
@@ -119,6 +125,7 @@ cb_extract_json_predictions <- function(path, species_thresholds = species_thres
 
   }
 
+  # and save if there are any predictions above thresholds
   if (dim(json_df)[1] > 0) {
 
     json_df |>
