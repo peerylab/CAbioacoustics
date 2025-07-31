@@ -12,5 +12,5 @@ You can install the development version of CAbioacoustics from [GitHub](https://
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("jaymwin/CAbioacoustics")
+devtools::install_github("peerylab/CAbioacoustics")
 ```
