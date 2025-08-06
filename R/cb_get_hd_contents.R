@@ -25,7 +25,7 @@ cb_get_hd_contents <- function(drive_path, output_dir) {
         stringr::str_subset('RECYCLE', negate = TRUE)
     ) |>
     # make size a numeric value
-    mutate(size_num = as.numeric(size))
+    dplyr::mutate(size_num = as.numeric(size))
 
   # print volume label and number of flacs
   vol_label <- get_volume_label(stringr::str_remove(drive_path, '/'))
