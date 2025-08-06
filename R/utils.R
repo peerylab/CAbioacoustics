@@ -431,3 +431,23 @@ sequential_wav_to_flac <- function(wav_path, deployment_name, hard_drive_path) {
 
 }
 
+# get name of an external hard drive (not just the drive letter)
+get_volume_label <- function(drive_letter) {
+
+  volumes <- system("wmic logicaldisk get name,volumename", intern = TRUE)
+  lines <- volumes[-1]  # skip header
+  lines <- trimws(lines)
+  parts <- strsplit(lines, "\\s{2,}")  # split on 2+ spaces
+
+  for (line in parts) {
+
+    if (length(line) == 2 && startsWith(line[1], drive_letter)) {
+      return(line[2])
+
+    }
+
+  }
+
+  return(NA)
+
+}
