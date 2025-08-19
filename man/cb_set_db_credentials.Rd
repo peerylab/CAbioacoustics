@@ -4,7 +4,7 @@
 \alias{cb_set_db_credentials}
 \title{Establish credentials for the UW spotted owl database}
 \usage{
-cb_set_db_credentials()
+cb_set_db_credentials(credentials_path)
 }
 \value{
 Saved passwords for spotted owl database
@@ -14,7 +14,7 @@ Establish credentials for the UW spotted owl database
 }
 \examples{
 \dontrun{
-# this will prompt to enter 1) the host, 2) user, 3) password, and 4) database name
-cb_set_db_credentials()
+# automatically set database credentials with csv
+cb_set_db_credentials('read_only_credentials.csv')
 }
 }

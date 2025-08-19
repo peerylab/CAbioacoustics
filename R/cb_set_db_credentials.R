@@ -6,15 +6,17 @@
 #'
 #' @examples
 #' \dontrun{
-#' # this will prompt to enter 1) the host, 2) user, 3) password, and 4) database name
-#' cb_set_db_credentials()
+#' # automatically set database credentials with csv
+#' cb_set_db_credentials('read_only_credentials.csv')
 #' }
 
-cb_set_db_credentials <- function() {
+cb_set_db_credentials <- function(credentials_path) {
 
-  keyring::key_set('spotted_owl_host')
-  keyring::key_set('spotted_owl_user')
-  keyring::key_set('spotted_owl_pwd')
-  keyring::key_set('spottedowl_db')
+  credentials_df <- readr::read_csv(credentials_path)
+
+  keyring::key_set(credentials_df$host)
+  keyring::key_set(credentials_df$user)
+  keyring::key_set(credentials_df$password)
+  keyring::key_set(credentials_df$db)
 
 }
