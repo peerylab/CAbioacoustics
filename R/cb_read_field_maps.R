@@ -47,7 +47,7 @@ cb_read_field_maps <- function(feature_layer, time_zone = "America/Los_Angeles")
     ) |>
     dplyr::mutate(
       dplyr::across(dplyr::where(is.character), ~dplyr::na_if(., " ")),
-      dplyr::across(dplyr::where(lubridate::is.timepoint), ~lubridate::force_tz(., time_zone))
+      dplyr::across(dplyr::where(lubridate::is.timepoint), ~lubridate::with_tz(., time_zone))
     ) |>
     sf::st_transform(4326)
 
