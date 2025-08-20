@@ -4,10 +4,10 @@
 \alias{cb_get_flac_paths}
 \title{Get path info for FLACs on research drive}
 \usage{
-cb_get_flac_paths(path, year)
+cb_get_flac_paths(root_path)
 }
 \arguments{
-\item{year}{}
+\item{root_path}{}
 }
 \description{
 Get path info for FLACs on research drive

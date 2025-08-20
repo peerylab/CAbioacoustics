@@ -1,40 +1,33 @@
 
 #' Get path info for FLACs on research drive
 #'
-#' @param path
-#' @param year
+#' @param root_path
 #'
 #' @return
 #' @export
 #'
 #' @examples
 
-cb_get_flac_paths <- function(path, year) {
+cb_get_flac_paths <- function(root_path) {
 
-  df <-
-    fs::dir_ls(
-      path = path,
-      recurse = 2,
-      regex = as.character(year)
-    ) |>
-    tibble::as_tibble() |>
-    dplyr::rowwise() |>
-    dplyr::mutate(depth = length(strsplit(value, "/")[[1]])) |>
-    dplyr::ungroup() |>
-    dplyr::filter(depth == max(depth)) |>
-    dplyr::select(-depth)
+  # Temporary output file for the listing
+  tmp_csv <- tempfile(fileext = ".csv")
 
-  subfolder_contents <-
-    df |>
-    dplyr::group_split(value) |>
-    purrr::map(get_subdirectory_contents) |>
-    purrr::list_c()
+  # PowerShell command
+  ps_cmd <-
+    paste0(
+      "powershell -Command \"",
+      "Get-ChildItem -Path '", root_path, "' -Recurse -Include *.flac -File | ",
+      "Select-Object @{Name='path';Expression={$_.FullName}}, ",
+      "@{Name='bytes';Expression={$_.Length}} | ",
+      "Export-Csv -Path '", tmp_csv, "' -NoTypeInformation\""
+    )
 
-  raw_file_info_df <-
-    subfolder_contents |>
-    furrr::future_map(get_file_info) |>
-    dplyr::bind_rows()
+  system(ps_cmd)
 
-  return(raw_file_info_df)
+  # Read the csv straight into R
+  flac_file_info_df <- read_csv(tmp_csv, show_col_types = FALSE)
+
+  return(flac_file_info_df)
 
 }
