@@ -26,7 +26,7 @@ cb_get_flac_paths <- function(root_path) {
   system(ps_cmd)
 
   # Read the csv straight into R
-  flac_file_info_df <- read_csv(tmp_csv, show_col_types = FALSE)
+  flac_file_info_df <- readr::read_csv(tmp_csv, show_col_types = FALSE)
 
   return(flac_file_info_df)
 
