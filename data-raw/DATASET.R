@@ -231,6 +231,33 @@ library(tidyverse)
 # usethis::use_data(forests_north_south, overwrite = TRUE)
 
 
+# sierra recording times --------------------------------------------------
+
+sierra_recording_hours <-
+  hms::parse_hms(
+    c(
+      '18:00:00',
+      '19:00:00',
+      '20:00:00',
+      '21:00:00',
+      '22:00:00',
+      '23:00:00',
+      '00:00:00',
+      '01:00:00',
+      '02:00:00',
+      '03:00:00',
+      '04:00:00',
+      '05:00:00',
+      '06:00:00',
+      '07:00:00',
+      '08:00:00'
+    )
+  )
+
+# save
+usethis::use_data(sierra_recording_hours, overwrite = TRUE)
+
+
 # owl_recording_times -----------------------------------------------------
 
 owl_times <-
