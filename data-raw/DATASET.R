@@ -258,7 +258,7 @@ usethis::use_data(owl_times, overwrite = TRUE)
 # minimum flac size -------------------------------------------------------
 
 # file sizes below this are moved and later discarded
-min_flac_size <- 92 # (megabytes)
+min_flac_size <- 9.2e+7 # (bytes)
 
 # save
 usethis::use_data(min_flac_size, overwrite = TRUE)
@@ -268,7 +268,7 @@ usethis::use_data(min_flac_size, overwrite = TRUE)
 
 # file sizes below this are moved and later discarded
 # this seems to be a good threshold now that jsons contain embeddings
-min_json_size <- 3 # (megabytes)
+min_json_size <- 3e+6 # (bytes)
 
 # save
 usethis::use_data(min_json_size, overwrite = TRUE)
