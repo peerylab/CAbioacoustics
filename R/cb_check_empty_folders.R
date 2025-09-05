@@ -15,7 +15,6 @@ cb_check_empty_folders <- function(path, year) {
   df <-
     fs::dir_ls(
       path = path,
-      recurse = 2,
       regex = as.character(year)
     ) |>
     tibble::as_tibble() |>
