@@ -4,7 +4,7 @@
 \alias{cb_flac_file_structure}
 \title{Create expected FLAC file path based on drive location, survey year, and study regions}
 \usage{
-cb_flac_file_structure(network_drive, survey_year, regions)
+cb_flac_file_structure(root)
 }
 \arguments{
 \item{regions}{}
