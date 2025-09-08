@@ -4,15 +4,13 @@
 \alias{cb_get_json_paths}
 \title{Get path info for JSONs on research drive}
 \usage{
-cb_get_json_paths(path, year)
+cb_get_json_paths(root_path)
 }
 \arguments{
-\item{path}{Path to JSON files}
-
-\item{year}{Year}
+\item{root_path}{Path to JSON files}
 }
 \value{
-Tibble of JSON file paths with size (MB), file name, and deployment name
+Tibble of JSON file paths with size (MB) and file name
 }
 \description{
 Get path info for JSONs on research drive
