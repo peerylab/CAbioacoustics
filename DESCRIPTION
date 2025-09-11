@@ -64,6 +64,7 @@ Collate:
     'cb_update_birdnet_db.R'
     'cb_wav_to_flac.R'
     'not_in.R'
+    'theme_cb.R'
     'utils-pipe.R'
 Imports: 
     av,
