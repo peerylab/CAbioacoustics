@@ -231,57 +231,6 @@ library(tidyverse)
 # usethis::use_data(forests_north_south, overwrite = TRUE)
 
 
-# sierra recording times --------------------------------------------------
-
-sierra_recording_hours <-
-  hms::parse_hms(
-    c(
-      '18:00:00',
-      '19:00:00',
-      '20:00:00',
-      '21:00:00',
-      '22:00:00',
-      '23:00:00',
-      '00:00:00',
-      '01:00:00',
-      '02:00:00',
-      '03:00:00',
-      '04:00:00',
-      '05:00:00',
-      '06:00:00',
-      '07:00:00',
-      '08:00:00'
-    )
-  )
-
-# save
-usethis::use_data(sierra_recording_hours, overwrite = TRUE)
-
-
-# owl_recording_times -----------------------------------------------------
-
-owl_times <-
-  # 8PM - 5:59 AM
-  # starts at 8PM with last recording starting at 5AM
-  hms::parse_hms(
-    c(
-      '20:00:00',
-      '21:00:00',
-      '22:00:00',
-      '23:00:00',
-      '00:00:00',
-      '01:00:00',
-      '02:00:00',
-      '03:00:00',
-      '04:00:00',
-      '05:00:00'
-    )
-  )
-
-# save
-usethis::use_data(owl_times, overwrite = TRUE)
-
-
 # minimum flac size -------------------------------------------------------
 
 # file sizes below this are moved and later discarded
@@ -307,6 +256,33 @@ hoot_buffer_distance <- 1500 # (meters)
 
 # save
 usethis::use_data(hoot_buffer_distance, overwrite = TRUE)
+
+
+# sierra recording times --------------------------------------------------
+
+sierra_recording_hours <-
+  hms::parse_hms(
+    c(
+      '18:00:00',
+      '19:00:00',
+      '20:00:00',
+      '21:00:00',
+      '22:00:00',
+      '23:00:00',
+      '00:00:00',
+      '01:00:00',
+      '02:00:00',
+      '03:00:00',
+      '04:00:00',
+      '05:00:00',
+      '06:00:00',
+      '07:00:00',
+      '08:00:00'
+    )
+  )
+
+# save
+usethis::use_data(sierra_recording_hours, overwrite = TRUE)
 
 
 # recording times by species group ----------------------------------------
@@ -343,13 +319,21 @@ diurnal_bird_hours <-
     c(
       '18:00:00',
       '19:00:00',
-      '06:00:00',
-      '07:00:00',
       '08:00:00'
     )
   )
 
 usethis::use_data(diurnal_bird_hours, overwrite = TRUE)
+
+diurnal_bird_forest_owl_hours <-
+  hms::parse_hms(
+    c(
+      '06:00:00',
+      '07:00:00'
+    )
+  )
+
+usethis::use_data(diurnal_bird_forest_owl_hours, overwrite = TRUE)
 
 
 # minimum json predictions ------------------------------------------------
