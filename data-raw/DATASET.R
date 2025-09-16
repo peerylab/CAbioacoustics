@@ -260,6 +260,7 @@ usethis::use_data(hoot_buffer_distance, overwrite = TRUE)
 
 # sierra recording times --------------------------------------------------
 
+# these are start times
 sierra_recording_hours <-
   hms::parse_hms(
     c(
@@ -304,6 +305,7 @@ csow_bdow_forest_owl_hours <-
 
 usethis::use_data(csow_bdow_forest_owl_hours, overwrite = TRUE)
 
+# these are start times
 all_bird_hours <-
   hms::parse_hms(
     c(
@@ -314,6 +316,7 @@ all_bird_hours <-
 
 usethis::use_data(all_bird_hours, overwrite = TRUE)
 
+# these are start times
 diurnal_bird_hours <-
   hms::parse_hms(
     c(
@@ -325,6 +328,7 @@ diurnal_bird_hours <-
 
 usethis::use_data(diurnal_bird_hours, overwrite = TRUE)
 
+# these are start times
 diurnal_bird_forest_owl_hours <-
   hms::parse_hms(
     c(
