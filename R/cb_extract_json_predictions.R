@@ -77,7 +77,11 @@ cb_extract_json_predictions <- function(json, threshold_df, predictions_output, 
         threshold_df,
         by = dplyr::join_by('species_code')
       ) |>
-      dplyr::filter(value >= logit_threshold)
+      dplyr::filter(value >= logit_threshold) |>
+      # keep highest csow score (if multiple are present per 3-second chunk)
+      dplyr::group_by(scientific_name, relative_time) |>
+      dplyr::filter(birdnet_logit == max(birdnet_logit)) |>
+      dplyr::ungroup()
 
   } else if (rounded_json_start_time %in% csow_bdow_forest_owl_hours) {
 
@@ -94,7 +98,11 @@ cb_extract_json_predictions <- function(json, threshold_df, predictions_output, 
         threshold_df |> dplyr::filter(species_type %in% c('csow_bdow', 'forest_owl')),
         by = dplyr::join_by('species_code')
       ) |>
-      dplyr::filter(value >= logit_threshold)
+      dplyr::filter(value >= logit_threshold) |>
+      # keep highest csow score (if multiple are present per 3-second chunk)
+      dplyr::group_by(scientific_name, relative_time) |>
+      dplyr::filter(birdnet_logit == max(birdnet_logit)) |>
+      dplyr::ungroup()
 
   } else if (rounded_json_start_time %in% diurnal_bird_forest_owl_hours) {
 
