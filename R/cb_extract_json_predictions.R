@@ -141,6 +141,7 @@ cb_extract_json_predictions <- function(json, threshold_df, predictions_output, 
       # e.g., keep 'Spotted Owl (four)' vs. generic 'Spotted Owl'
       dplyr::group_by(scientific_name, relative_time) |>
       # e.g., keep species code 211 (four-note) instead of 208 (generic csow)
+      # all call type codes higher than 208, and csow only species with multiple call types
       dplyr::filter(species_code == max(species_code)) |>
       dplyr::ungroup() |>
       dplyr::mutate(json = json_name) |>
