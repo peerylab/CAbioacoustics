@@ -340,6 +340,14 @@ diurnal_bird_forest_owl_hours <-
 usethis::use_data(diurnal_bird_forest_owl_hours, overwrite = TRUE)
 
 
+# species groups by time --------------------------------------------------
+
+species_groups_hours_df <-
+  readr::read_csv(here::here('data-raw/species_times.csv'))
+
+usethis::use_data(species_groups_hours_df, overwrite = TRUE)
+
+
 # minimum json predictions ------------------------------------------------
 
 # this is equivalent to a 30 minute recording with predictions for each
