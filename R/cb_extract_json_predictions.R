@@ -135,12 +135,13 @@ cb_extract_json_predictions <- function(json, threshold_df, predictions_output, 
   # keep any predictions above species-specific thresholds
   if (nrow(json_df) > 0) {
 
-    # save to file based on json name
+    # save to parquet file based on json name
     json_df |>
-      # keep highest csow score (if multiple are present per 3-second chunk)
+      # keep call-specific csow prediction (if multiple predictions are present per 3-second chunk)
+      # e.g., keep 'Spotted Owl (four)' vs. generic 'Spotted Owl'
       dplyr::group_by(scientific_name, relative_time) |>
-      # value = birdnet logit
-      dplyr::filter(value == max(value)) |>
+      # e.g., keep species code 211 (four-note) instead of 208 (generic csow)
+      dplyr::filter(species_code == max(species_code)) |>
       dplyr::ungroup() |>
       dplyr::mutate(json = json_name) |>
       dplyr::select(json, relative_time, species_code, common_name, birdnet_logit = value) |>
