@@ -12,12 +12,14 @@
 
 cb_rename_flacs <- function(dir, pattern, replacement) {
 
-  # get list of directories/files to change
-  flacs <- fs::dir_ls(dir, recurse = TRUE)
+  # get list of directories to change
+  dirs <- fs::dir_ls(dir, recurse = TRUE, type = 'directory')
+
+  # get list of flacs to change
+  flacs <- fs::dir_ls(dir, recurse = TRUE, glob = '*.flac')
 
   # create new directories first
-  dirname(flacs) |>
-    unique() |>
+  dirs |>
     stringr::str_replace_all(pattern, replacement) |>
     fs::dir_create()
 
