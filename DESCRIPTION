@@ -30,6 +30,7 @@ Collate:
     'cb_disconnect_db.R'
     'cb_extract_json_predictions.R'
     'cb_extract_raster.R'
+    'cb_flac_file_name.R'
     'cb_flac_file_structure.R'
     'cb_get_audio_duration.R'
     'cb_get_date_time.R'
