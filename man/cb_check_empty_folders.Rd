@@ -4,10 +4,10 @@
 \alias{cb_check_empty_folders}
 \title{Check for folders missing acoustic data on research drive}
 \usage{
-cb_check_empty_folders(path, year)
+cb_check_empty_folders(root)
 }
 \arguments{
-\item{year}{}
+\item{root}{}
 }
 \description{
 Check for folders missing acoustic data on research drive
