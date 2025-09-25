@@ -60,6 +60,16 @@ cb_extract_json_predictions <- function(json, threshold_df, predictions_output, 
 
   }
 
+  # log raw JSON summary
+  # to confirm no empty JSONs
+  tibble::tibble(json = json, n = nrow(json_df)) |>
+    write.table(
+      stringr::str_glue('{log_output}/json_summary.txt'),
+      col.names = FALSE,
+      row.names = FALSE,
+      append = TRUE
+    )
+
   # get predictions if everything parsed above
   # and do so depending on the hour of the recording
   if (rounded_json_start_time %in% all_bird_hours) {
