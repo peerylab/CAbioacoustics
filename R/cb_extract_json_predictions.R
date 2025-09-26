@@ -42,7 +42,7 @@ cb_extract_json_predictions <- function(json, threshold_df, predictions_output, 
       # Log to a failures file
       tibble::tibble(json = json, error = e$message) |>
         write.table(
-          stringr::str_glue('{log_output}/json_failures.txt'),
+          stringr::str_glue('{log_output}/json_failures_{Sys.getpid()}.txt'),
           col.names = FALSE,
           row.names = FALSE,
           append = TRUE,
@@ -64,7 +64,7 @@ cb_extract_json_predictions <- function(json, threshold_df, predictions_output, 
   # to confirm no empty JSONs
   tibble::tibble(json = json, n = nrow(json_df)) |>
     write.table(
-      stringr::str_glue('{log_output}/json_summary.txt'),
+      stringr::str_glue('{log_output}/json_summary_{Sys.getpid()}.txt'),
       col.names = FALSE,
       row.names = FALSE,
       append = TRUE
@@ -163,7 +163,7 @@ cb_extract_json_predictions <- function(json, threshold_df, predictions_output, 
   # log successfully processed JSON
   tibble::tibble(json = json, n = nrow(json_df)) |>
     write.table(
-      stringr::str_glue('{log_output}/json_successes.txt'),
+      stringr::str_glue('{log_output}/json_successes_{Sys.getpid()}.txt'),
       col.names = FALSE,
       row.names = FALSE,
       append = TRUE
