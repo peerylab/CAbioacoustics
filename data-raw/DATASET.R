@@ -355,3 +355,23 @@ usethis::use_data(species_groups_hours_df, overwrite = TRUE)
 min_json_predictions <- 144600
 
 usethis::use_data(min_json_predictions, overwrite = TRUE)
+
+
+# region assignment per group ---------------------------------------------
+
+# north = 1:23; central = 24;45 south = 46;99
+
+group_region_df <-
+  tibble::tibble(
+  group_id = paste0("G0", sprintf("%02d", 1:99))
+) |>
+  dplyr::mutate(
+    group = dplyr::row_number(),
+    region = dplyr::case_when(
+      group <= 23 ~ 'North',
+      group > 23 & group <= 45 ~ 'Central',
+      TRUE ~ 'South'
+    )) |>
+  dplyr::select(-group)
+
+usethis::use_data(group_region_df, overwrite = TRUE)
