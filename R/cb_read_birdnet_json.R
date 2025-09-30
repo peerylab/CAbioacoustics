@@ -36,22 +36,22 @@ cb_read_birdnet_json <- function(path) {
     tibble::enframe(json_list) |>
     dplyr::filter(name == 'detections') |>
     tidyr::unnest_longer(value) |>
-    dplyr::rename(start_time = value_id) |>
+    dplyr::rename(relative_time = value_id) |>
     tidyr::unnest(cols = c(value)) |>
     tidyr::unnest(cols = c(value)) |>
     dplyr::rename(birdnet_logit = value) |>
     dplyr::select(-name) |>
-    dplyr::group_by(start_time) |>
+    dplyr::group_by(relative_time) |>
     dplyr::mutate(species_code = dplyr::row_number() - 1) |>
     dplyr::ungroup() |>
-    dplyr::select(start_time, species_code, birdnet_logit) |>
+    dplyr::select(relative_time, species_code, birdnet_logit) |>
     # join in species codes
     dplyr::left_join(species_df, by = 'species_code') |>
     dplyr::mutate(birdnet_prediction = round(cb_logit_to_confidence(birdnet_logit), 3)) |>
-    dplyr::arrange(start_time, common_name) |>
-    dplyr::select(start_time, dplyr::matches('name'), dplyr::matches('birdnet')) |>
-    dplyr::mutate(start_time = as.numeric(start_time)) |>
-    dplyr::arrange(start_time)
+    dplyr::arrange(relative_time, common_name) |>
+    dplyr::select(relative_time, dplyr::matches('name'), dplyr::matches('birdnet')) |>
+    dplyr::mutate(relative_time = as.numeric(relative_time)) |>
+    dplyr::arrange(relative_time)
 
   return(df)
 
