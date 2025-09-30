@@ -4,7 +4,7 @@
 \alias{cb_create_selection_table}
 \title{Create selection tables for CSOW/BDOW or forest owls}
 \usage{
-cb_create_selection_table(df, date_time, species_group)
+cb_create_selection_table(df, output, species_group)
 }
 \arguments{
 \item{species_group}{}
