@@ -375,3 +375,12 @@ group_region_df <-
   dplyr::select(-group)
 
 usethis::use_data(group_region_df, overwrite = TRUE)
+
+
+# deployment string -------------------------------------------------------
+
+# for extracting deployment names
+# allow for 5-digit cell ID with NSO grid
+deployment_string <- 'G(P|R|C|M|0)[0-9]{2}_V[1-5]{1}_C[0-9]{4}_U[1-5]{1}|GN[0-9]{2}_V[1-5]{1}_C[0-9]{5}_U[1-5]{1}'
+
+usethis::use_data(deployment_string, overwrite = TRUE)
