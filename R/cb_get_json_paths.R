@@ -26,7 +26,11 @@ cb_get_json_paths <- function(root_path) {
   system(ps_cmd)
 
   # Read the csv straight into R
-  json_file_info_df <- readr::read_csv(tmp_csv, show_col_types = FALSE)
+  json_file_info_df <-
+    readr::read_csv(tmp_csv, show_col_types = FALSE) |>
+    dplyr::mutate(
+      path = stringr::str_replace_all(path, '\\\\', '/')
+    )
 
   return(json_file_info_df)
 
