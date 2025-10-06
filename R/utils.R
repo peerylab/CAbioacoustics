@@ -13,8 +13,8 @@ complete_survey_nights <- function(df, start_date, end_date) {
       project_area,
       survey_year,
       survey_night = seq.Date(
-        as.Date(stringr::str_c(max(survey_year), start_date)),
-        as.Date(stringr::str_c(max(survey_year), end_date)),
+        lubridate::as_date(stringr::str_c(max(survey_year), start_date)),
+        lubridate::as_date(stringr::str_c(max(survey_year), end_date)),
         by = "days"
       ),
       # fill in no effort
@@ -30,7 +30,7 @@ complete_survey_nights <- function(df, start_date, end_date) {
 # create a date sequence given start/end dates
 date_sequence <- function(df) {
 
-  seq.Date(as.Date(df$start_date), as.Date(df$end_date), by = 'day')
+  seq.Date(lubridate::as_date(df$start_date), lubridate::as_date(df$end_date), by = 'day')
 
 }
 
@@ -41,8 +41,8 @@ create_season_dates <- function(start_year, end_year, start_date, end_date) {
   df <-
     tibble::tibble(
       survey_year = start_year:end_year,
-      start_date = as.Date(stringr::str_c(survey_year, start_date)),
-      end_date = as.Date(stringr::str_c(survey_year, end_date))
+      start_date = lubridate::as_date(stringr::str_c(survey_year, start_date)),
+      end_date = lubridate::as_date(stringr::str_c(survey_year, end_date))
     )
 
   df <-
@@ -84,7 +84,7 @@ hoots_same_night <- function(df, focal_date) {
     nrow(
       df |>
         # does it intersect ARU buffer?
-        dplyr::filter(survey_night_date == as.Date(focal_date))
+        dplyr::filter(survey_night_date == lubridate::as_date(focal_date))
     )
 
   if (n_rows > 0) {
@@ -353,8 +353,8 @@ get_surveyor_overlap <- function(df, human_hoots) {
       # convert date to survey night depending on time
       aru_survey_night =
         dplyr::case_when(
-          lubridate::hour(hms::as_hms(aru_date_time)) >= 0 ~ as.Date(aru_date_time) - 1,
-          TRUE ~ as.Date(aru_date_time)
+          lubridate::hour(hms::as_hms(aru_date_time)) >= 0 ~ lubridate::as_date(aru_date_time) - 1,
+          TRUE ~ lubridate::as_date(aru_date_time)
         )
     ) |>
     # just need deployment name and date for each birdnet file
@@ -402,12 +402,12 @@ get_surveyor_overlap <- function(df, human_hoots) {
     focal_human_hoots_sf <-
       human_hoots %>%
       # does it intersect ARU buffer?
-      dplyr::filter(survey_night_date == as.Date(birdnet_selection_df$aru_survey_night))
+      dplyr::filter(survey_night_date == lubridate::as_date(birdnet_selection_df$aru_survey_night))
 
     intersections <-
       human_hoots %>%
       # does it intersect ARU buffer?
-      dplyr::filter(survey_night_date == as.Date(birdnet_selection_df$aru_survey_night)) %>%
+      dplyr::filter(survey_night_date == lubridate::as_date(birdnet_selection_df$aru_survey_night)) %>%
       dplyr::mutate(int = CAbioacoustics:::st_intersects_any(., focal_deployment_sf |> sf::st_transform(4326))) |>
       dplyr::filter(int == TRUE) |>
       dplyr::distinct(int) |>
