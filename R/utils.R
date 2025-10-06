@@ -344,18 +344,15 @@ get_surveyor_overlap <- function(df, human_hoots) {
     tibble::as_tibble() |>
     dplyr::rename(begin_file = value) |>
     dplyr::mutate(
-      # pull out date (yyyymmdd)
-      begin_file_date = stringr::str_extract(focal_birdnet_path, '(?<!\\d)[\\d]{8}(?!\\d)'),
-      # pull out time (hhmmss)
-      begin_file_time = stringr::str_extract(focal_birdnet_path, '(?<!\\d)[\\d]{6}(?!\\d)'),
-      # create a date (yyyy-mm-dd hh:mm:ss)
-      aru_date_time = lubridate::ymd_hms(stringr::str_c(begin_file_date, begin_file_time), tz = "America/Los_Angeles"),
-      # convert date to survey night depending on time
-      aru_survey_night =
-        dplyr::case_when(
-          lubridate::hour(hms::as_hms(aru_date_time)) >= 0 ~ lubridate::as_date(aru_date_time) - 1,
-          TRUE ~ lubridate::as_date(aru_date_time)
-        )
+      # pull out date
+      aru_date_time = lubridate::ymd_hms(stringr::str_extract(focal_birdnet_path, '[0-9]{8}_[0-9]{6}'), tz = 'America/Los_Angeles'),
+      hour = hms::as_hms(lubridate::round_date(aru_date_time, 'hour'))
+    ) |>
+    dplyr::mutate(
+      aru_survey_night = dplyr::case_when(
+        hour %in% hms::parse_hms(c('00:00:00', '01:00:00', '02:00:00', '03:00:00', '04:00:00', '05:00:00')) ~ lubridate::as_date(aru_date_time) - 1,
+        TRUE ~ lubridate::as_date(aru_date_time)
+      )
     ) |>
     # just need deployment name and date for each birdnet file
     dplyr::transmute(
