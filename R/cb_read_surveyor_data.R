@@ -15,7 +15,7 @@
 
 cb_read_surveyor_data <- function(path) {
 
-  file_type <- stringr::str_extract(path, ".csv|.xlsx")
+  file_type <- stringr::str_extract(path, ".csv|.xls")
 
   if (file_type == ".csv") {
 
