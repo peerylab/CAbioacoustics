@@ -1,7 +1,7 @@
 
 #' Get path info for FLACs on research drive
 #'
-#' @param root_path
+#' @param root_path Path to FLAC files
 #'
 #' @return Tibble containing FLAC paths and size of files (in bytes)
 #' @export

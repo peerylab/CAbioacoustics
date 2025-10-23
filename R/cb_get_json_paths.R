@@ -3,10 +3,17 @@
 #'
 #' @param root_path Path to JSON files
 #'
-#' @return Tibble of JSON file paths with size (MB) and file name
+#' @return Tibble containing JSON paths and size of files (in bytes)
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' # root path to scan
+#' json_root <- "Z:/Acoustic_Data/ARU_Data_Processed/BirdNET_Results_JSON/JSON_Sierra_Monitoring/2025"
+#'
+#' # get df of flac info
+#' json_file_info_df <- cb_get_json_paths(json_root)
+#' }
 
 cb_get_json_paths <- function(root_path) {
 

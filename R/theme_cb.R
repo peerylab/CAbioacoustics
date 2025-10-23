@@ -1,10 +1,18 @@
 
 #' CAbioacoustics plotting theme
 #'
-#' @return
+#' @return A \code{ggplot2} object with the \code{CAbioacoustics} plotting theme
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' # mtcars plot
+#' library(ggplot2)
+#'
+#' ggplot(mtcars, aes(x = hp, y = mpg, color = cyl, shape = as.factor(cyl))) +
+#'   geom_point(size = 3) +
+#'   theme_cb()
+#' }
 
 theme_cb <- function() {
 

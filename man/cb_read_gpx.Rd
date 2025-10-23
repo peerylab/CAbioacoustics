@@ -9,6 +9,18 @@ cb_read_gpx(x)
 \arguments{
 \item{x}{}
 }
+\value{
+A \code{sf} \code{POINT} object with GPS point name and datetime
+}
 \description{
 Read GPX files from Garmin GPS units
+}
+\examples{
+\dontrun{
+# path to GPX file
+gpx_path <- "Z:/2025_sierra_acoustic_data_processing/code/02-field_season/gpx_files/South_GPS_WPTS_0605_2025.gpx"
+
+# turn GPX into sf POINT object
+gpx_sf <- cb_read_gpx(gpx_path)
+}
 }

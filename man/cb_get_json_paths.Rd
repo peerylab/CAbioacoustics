@@ -10,8 +10,17 @@ cb_get_json_paths(root_path)
 \item{root_path}{Path to JSON files}
 }
 \value{
-Tibble of JSON file paths with size (MB) and file name
+Tibble containing JSON paths and size of files (in bytes)
 }
 \description{
 Get path info for JSONs on research drive
+}
+\examples{
+\dontrun{
+# root path to scan
+json_root <- "Z:/Acoustic_Data/ARU_Data_Processed/BirdNET_Results_JSON/JSON_Sierra_Monitoring/2025"
+
+# get df of flac info
+json_file_info_df <- cb_get_json_paths(json_root)
+}
 }

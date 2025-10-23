@@ -7,7 +7,7 @@
 cb_get_flac_paths(root_path)
 }
 \arguments{
-\item{root_path}{}
+\item{root_path}{Path to FLAC files}
 }
 \value{
 Tibble containing FLAC paths and size of files (in bytes)
