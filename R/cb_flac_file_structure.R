@@ -1,30 +1,17 @@
 
-#' Create expected FLAC file path based on drive location, survey year, and study regions
+#' Create expected FLAC file naming convention based on drive location, survey year, and study regions
 #'
-#' @param root
-#' @param study_type
+#' @param root Directory to FLAC files
+#' @param study_type Study type (e.g., 'Sierra_Monitoring', 'NSO')
 #'
-#' @return
+#' @return String with proper FLAC naming convention and path structure
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' # example ARU data frame
-#' # set mapped drive to research path
-#' network_drive <- 'Z:'
-#' # path to data
-#' path <- stringr::str_c(network_drive, "/Acoustic_Data/ARU_Data_Raw")
-#' # current year = survey year
-#' data_year <- lubridate::year(lubridate::today())
-
-#' # string with proper naming convention
-#' flac_file_structure <-
-#'   cb_flac_file_structure(
-#'     network_drive = network_drive,
-#'     survey_year = data_year,
-#'     regions = regions
-#'  )
-#'  print(flac_file_structure)
+#' # use this for string detection
+#' flac_file_structure <- cb_flac_file_structure(root, study_type = 'Sierra_Monitoring')
+#' print(flac_file_structure)
 #' }
 
 cb_flac_file_structure <- function(root, study_type) {

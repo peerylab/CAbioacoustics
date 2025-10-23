@@ -7,34 +7,20 @@
 cb_json_file_structure(network_drive, survey_year, regions)
 }
 \arguments{
-\item{network_drive}{Drive name (e.g., Z:/)}
+\item{root}{Directory to JSON files}
 
-\item{survey_year}{Year}
-
-\item{regions}{Study regions (e.g., North, Central, South) or other year subfolder names}
+\item{study_type}{Study type (e.g., 'Sierra_Monitoring', 'NSO')}
 }
 \value{
-String with proper naming convention
+String with proper JSON naming convention and path structure
 }
 \description{
 Create expected JSON file naming convention based on drive location, survey year, and study regions
 }
 \examples{
 \dontrun{
-# example ARU data frame
-# set mapped drive to research path
-network_drive <- 'Z:'
-# path to data
-path <- stringr::str_c(network_drive, "/Acoustic_Data/ARU_Data_Processed/BirdNET_Results_JSON")
-# current year = survey year
-data_year <- lubridate::year(lubridate::today())
-# string with proper naming convention
-json_file_structure <-
-  cb_json_file_structure(
-    network_drive = network_drive,
-    survey_year = data_year,
-    regions = regions
- )
- print(json_file_structure)
+# use this for string detection
+json_file_structure <- cb_json_file_structure(root, study_type = 'NSO')
+print(json_file_structure)
 }
 }

@@ -2,32 +2,25 @@
 % Please edit documentation in R/cb_flac_file_structure.R
 \name{cb_flac_file_structure}
 \alias{cb_flac_file_structure}
-\title{Create expected FLAC file path based on drive location, survey year, and study regions}
+\title{Create expected FLAC file naming convention based on drive location, survey year, and study regions}
 \usage{
 cb_flac_file_structure(root, study_type)
 }
 \arguments{
-\item{study_type}{}
+\item{root}{Directory to FLAC files}
+
+\item{study_type}{Study type (e.g., 'Sierra_Monitoring', 'NSO')}
+}
+\value{
+String with proper FLAC naming convention and path structure
 }
 \description{
-Create expected FLAC file path based on drive location, survey year, and study regions
+Create expected FLAC file naming convention based on drive location, survey year, and study regions
 }
 \examples{
 \dontrun{
-# example ARU data frame
-# set mapped drive to research path
-network_drive <- 'Z:'
-# path to data
-path <- stringr::str_c(network_drive, "/Acoustic_Data/ARU_Data_Raw")
-# current year = survey year
-data_year <- lubridate::year(lubridate::today())
-# string with proper naming convention
-flac_file_structure <-
-  cb_flac_file_structure(
-    network_drive = network_drive,
-    survey_year = data_year,
-    regions = regions
- )
- print(flac_file_structure)
+# use this for string detection
+flac_file_structure <- cb_flac_file_structure(root, study_type = 'Sierra_Monitoring')
+print(flac_file_structure)
 }
 }
