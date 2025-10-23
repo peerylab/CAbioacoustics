@@ -9,6 +9,32 @@ cb_read_field_maps(feature_layer, time_zone = "America/Los_Angeles")
 \arguments{
 \item{feature_layer}{HTML to hosted Field Maps feature layer}
 }
+\value{
+A \code{sf} \code{POINT} object of ARU deployments/recoveries
+}
 \description{
 Read ARU deployment/recovery data from ArcGIS Field Maps
+}
+\examples{
+\dontrun{
+library(tidyverse)
+library(sf)
+library(arcgisbinding)
+
+# connect to ArcGIS Pro
+arc.check_product()
+
+# read ARUs deployments entered using Field Maps
+aru_field_maps_deployments_df <-
+  cb_read_field_maps("https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/aru_deployments_recoveries/FeatureServer/0") |>
+  select(
+    swift_id,
+    deployment_or_recovery,
+    deployment_date_and_time,
+    group_id,
+    cell_id,
+    recovery_date_and_time
+  ) |>
+  filter(deployment_or_recovery == 'Deployment')
+}
 }
