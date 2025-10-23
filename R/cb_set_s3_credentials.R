@@ -1,7 +1,7 @@
 
 #' Establish credentials to access Amazon S3 bucket
 #'
-#' @return Saved passwords for Amazon S3
+#' @return Save passwords for Amazon S3 in keyring
 #' @export
 #'
 #' @examples

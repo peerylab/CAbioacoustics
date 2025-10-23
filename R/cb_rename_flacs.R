@@ -1,14 +1,22 @@
 
-#' Rename flacs files with incorrect deployment information
+#' Rename FLAC files with incorrect deployment information
 #'
-#' @param dir
-#' @param pattern
-#' @param replacement
+#' @param dir Directory where FLACs are kept (for example, folder containing all FLACs for an ARU deployment)
+#' @param pattern String needing replacing
+#' @param replacement String to replace it with
 #'
-#' @return
+#' @return Renamed FLAC files in renamed directories
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' # correct G001_C0001_V1_U2 to G001_C0001_V1_U1
+#' cb_rename_flacs(
+#'   dir = 'path/to/deployments/G001_C0001_V1_U2',
+#'   pattern = 'U2',
+#'   replacement = 'U1'
+#'   )
+#' }
 
 cb_rename_flacs <- function(dir, pattern, replacement) {
 

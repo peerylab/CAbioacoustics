@@ -14,6 +14,7 @@ Check if you're set up with Globus from R
 }
 \examples{
 \dontrun{
+# this should print your username
 cb_globus_check()
 }
 }

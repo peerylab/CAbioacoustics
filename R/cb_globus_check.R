@@ -6,6 +6,7 @@
 #'
 #' @examples
 #' \dontrun{
+#' # this should print your username
 #' cb_globus_check()
 #' }
 
