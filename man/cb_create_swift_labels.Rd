@@ -7,14 +7,51 @@
 cb_create_swift_labels(
   swift_df,
   type = "matrix",
-  file,
+  output_file,
   font_size,
   label_height_ratio
 )
 }
 \arguments{
-\item{label_height_ratio}{}
+\item{swift_df}{Data frame containing Swift IDs with \code{label} column}
+
+\item{type}{QR or linear barcode}
+
+\item{output_file}{PDF output path}
+
+\item{font_size}{Size of Swift IDs on labels}
+
+\item{label_height_ratio}{How high to make the Swift ID label}
+}
+\value{
+PDF with QR codes/linear barcodes and Swift IDs
 }
 \description{
 Create PDF of scannable QR codes for Swift recorders (geared toward Avery 5520 labels)
+}
+\examples{
+\dontrun{
+library(tidyverse)
+
+# list of Swift IDs to create
+swift_id <- 1:1000
+
+# add leading zeros and S
+swift_df <-
+  # always make swift ID be S and 4 digits
+  sprintf("\%004d", swift_id) |>
+  as_tibble() |>
+  rename(label = value) |>
+  mutate(label = str_c('S', label))
+
+# create pdf of labels
+cb_create_swift_labels(
+  swift_df = swift_df,
+  # matrix = QR code
+  type = 'matrix',
+  output_file = here::here('2025_sierra_monitoring_swift_labels.pdf'),
+  font_size = 18,
+  label_height_ratio = 1
+)
+}
 }

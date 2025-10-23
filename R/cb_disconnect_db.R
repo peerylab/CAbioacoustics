@@ -5,6 +5,7 @@
 #'
 #' @examples
 #' \dontrun{
+#' # disconnect from the owl database
 #' cb_disconnect_db()
 #' }
 

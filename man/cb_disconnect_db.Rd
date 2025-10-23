@@ -11,6 +11,7 @@ Disconnect from spotted owl database when finished with queries
 }
 \examples{
 \dontrun{
+# disconnect from the owl database
 cb_disconnect_db()
 }
 }
