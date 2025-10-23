@@ -43,8 +43,8 @@ destination_path <- 'data_requests/example_request/raw_flacs'
 # run the transfer
 cb_globus_transfer(
 # collection UUIDs saved in keyring already
-  collection_one = keyring::key_get('s3_collection_id'),
-  collection_two = keyring::key_get('research_drive_collection_id'),
+  collection_one = 's3_collection_id',
+  collection_two = 'research_drive_collection_id',
   destination_path = destination_path,
   batch_file_path = batch_file_path,
   label = transfer_label

@@ -24,8 +24,8 @@
 #' # run the transfer
 #' cb_globus_transfer(
 #' # collection UUIDs saved in keyring already
-#'   collection_one = keyring::key_get('s3_collection_id'),
-#'   collection_two = keyring::key_get('research_drive_collection_id'),
+#'   collection_one = 's3_collection_id',
+#'   collection_two = 'research_drive_collection_id',
 #'   destination_path = destination_path,
 #'   batch_file_path = batch_file_path,
 #'   label = transfer_label
@@ -36,7 +36,7 @@ cb_globus_transfer <- function(collection_one, collection_two, destination_path,
 
   globus_transfer <-
     stringr::str_glue(
-      'globus transfer %{collection_one}%:/ %{collection_two}%:{destination_path} --label "{label}" --batch {batch_file_path}'
+      'globus transfer {keyring::key_get(collection_one)}:/ {keyring::key_get(collection_two)}:{destination_path} --label "{label}" --batch {batch_file_path}'
     )
 
   # print transfer
