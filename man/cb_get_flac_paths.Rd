@@ -9,6 +9,18 @@ cb_get_flac_paths(root_path)
 \arguments{
 \item{root_path}{}
 }
+\value{
+Tibble containing FLAC paths and size of files (in bytes)
+}
 \description{
 Get path info for FLACs on research drive
+}
+\examples{
+\dontrun{
+# root path to scan
+flac_root <- "Z:/Acoustic_Data/ARU_Data_Raw/ARU_Sierra_Monitoring/2025"
+
+# get df of flac info
+flac_file_info_df <- cb_get_flac_paths(flac_root)
+}
 }

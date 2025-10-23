@@ -3,10 +3,17 @@
 #'
 #' @param root_path
 #'
-#' @return
+#' @return Tibble containing FLAC paths and size of files (in bytes)
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' # root path to scan
+#' flac_root <- "Z:/Acoustic_Data/ARU_Data_Raw/ARU_Sierra_Monitoring/2025"
+#'
+#' # get df of flac info
+#' flac_file_info_df <- cb_get_flac_paths(flac_root)
+#' }
 
 cb_get_flac_paths <- function(root_path) {
 
