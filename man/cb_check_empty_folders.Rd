@@ -7,8 +7,17 @@
 cb_check_empty_folders(root)
 }
 \arguments{
-\item{root}{}
+\item{root}{Diretory of FLAC or JSON files}
 }
 \description{
 Check for folders missing acoustic data on research drive
+}
+\examples{
+\dontrun{
+# path to FLACs or JSONs
+root <- "Z:/Acoustic_Data/ARU_Data_Raw/ARU_Sierra_Monitoring/2025"
+
+# check for empty folders (usually write this to a csv)
+cb_check_empty_folders(root)
+}
 }

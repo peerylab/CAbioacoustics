@@ -1,12 +1,19 @@
 
 #' Check for folders missing acoustic data on research drive
 #'
-#' @param root
+#' @param root Directory of FLAC or JSON files
 #'
-#' @return
+#' @return Data frame of empty folder(s)
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' # path to FLACs or JSONs
+#' root <- "Z:/Acoustic_Data/ARU_Data_Raw/ARU_Sierra_Monitoring/2025"
+#'
+#' # check for empty folders (usually write this to a csv)
+#' cb_check_empty_folders(root)
+#' }
 
 cb_check_empty_folders <- function(root) {
 
