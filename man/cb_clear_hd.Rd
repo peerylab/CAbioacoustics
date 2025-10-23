@@ -7,8 +7,16 @@
 cb_clear_hd(path)
 }
 \arguments{
-\item{path}{}
+\item{path}{External hard drive directory}
+}
+\value{
+Empty external hard drive
 }
 \description{
 Clear contents of an external hard drive
+}
+\examples{
+\dontrun{
+cb_clear_hd('D:/')
+}
 }

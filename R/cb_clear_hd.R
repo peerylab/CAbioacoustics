@@ -1,12 +1,16 @@
 
 #' Clear contents of an external hard drive
 #'
-#' @param path
+#' @param path External hard drive directory
 #'
-#' @return
+#' @return Empty external hard drive
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' cb_clear_hd('D:/')
+#' }
+
 
 cb_clear_hd <- function(path) {
 

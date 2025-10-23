@@ -2,13 +2,18 @@
 % Please edit documentation in R/cb_delete_db_records.R
 \name{cb_delete_db_records}
 \alias{cb_delete_db_records}
-\title{Delete a record from the database}
+\title{Delete record(s) from the database}
 \usage{
 cb_delete_db_records(ids, table_name)
 }
 \arguments{
-\item{table_name}{}
+\item{ids}{Database records to delete}
+
+\item{table_name}{Name of database table}
+}
+\value{
+Delete database records based on IDs
 }
 \description{
-Delete a record from the database
+Delete record(s) from the database
 }

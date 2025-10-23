@@ -1,5 +1,5 @@
 
-#' Create expected JSON file path based on drive location, survey year, and study regions
+#' Create expected JSON file naming convention based on drive location, survey year, and study regions
 #'
 #' @param network_drive Drive name (e.g., Z:/)
 #' @param survey_year Year
