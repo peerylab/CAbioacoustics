@@ -17,3 +17,15 @@ Delete database records based on IDs
 \description{
 Delete record(s) from the database
 }
+\examples{
+\dontrun{
+# connect to database
+cb_connect_db()
+
+# delete records in acoustic_field_visits
+cb_delete_db_records(ids = c(1, 2, 3), table_name = 'acoustic_field_visits')
+
+# disconnect
+cb_disconnect_db()
+}
+}
