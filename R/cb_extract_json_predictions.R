@@ -1,15 +1,43 @@
 
 #' Extract predictions from JSON files using species-specific threshold values
 #'
-#' @param json
-#' @param threshold_df
-#' @param predictions_output
-#' @param log_output
+#' @param json Path to JSON file
+#' @param threshold_df Data frame containing species codes and logit thresholds
+#' @param predictions_output Directory where parquet files of predictions above species-specific thresholds are stored
+#' @param log_output Directory where log files storing JSON parsing successes and failures are stored
 #'
-#' @return
+#' @return Parquet files of predictions above species-specific thresholds and log files to document JSON parsing
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' # set cores for parallel processing
+#' cb_set_future_cores()
+#'
+#' # Root path to scan
+#' json_root <- "Z:/Acoustic_Data/ARU_Data_Processed/BirdNET_Results_JSON/JSON_Sierra_Monitoring/2025"
+#'
+#' # get df of JSON info
+#' json_file_info_df <-
+#'   cb_get_json_paths(json_root)
+#'
+#' # pull out JSON paths
+#' jsons <-
+#'   json_file_info_df |>
+#'   pull(path)
+#'
+#' # extract predictions
+#' jsons |>
+#'   future_walk(
+#'     \(x)
+#'     cb_extract_json_predictions(
+#'       json = x,
+#'       threshold_df = CAbioacousticsextras::species_threshold_df,
+#'       predictions_output = here::here('birdnet_predictions'),
+#'       log_output = log_output
+#'     )
+#'   )
+#' }
 
 cb_extract_json_predictions <- function(json, threshold_df, predictions_output, log_output) {
 

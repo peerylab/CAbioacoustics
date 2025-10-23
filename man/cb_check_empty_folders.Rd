@@ -7,7 +7,10 @@
 cb_check_empty_folders(root)
 }
 \arguments{
-\item{root}{Diretory of FLAC or JSON files}
+\item{root}{Directory of FLAC or JSON files}
+}
+\value{
+Data frame of empty folder(s)
 }
 \description{
 Check for folders missing acoustic data on research drive
