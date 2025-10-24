@@ -14,6 +14,7 @@ Print Globus endpoint IDs
 }
 \examples{
 \dontrun{
+# show endpoints
 cb_show_globus_endpoints()
 }
 }

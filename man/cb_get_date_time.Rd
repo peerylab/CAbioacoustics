@@ -7,7 +7,12 @@
 cb_get_date_time(type, folder)
 }
 \arguments{
-\item{folder}{}
+\item{type}{Current datetime or datetime of most recent code run}
+
+\item{folder}{Directory to find datetime if looking for most recent one}
+}
+\value{
+Datetime in character format
 }
 \description{
 Get datetime in character format for current or most recent code run

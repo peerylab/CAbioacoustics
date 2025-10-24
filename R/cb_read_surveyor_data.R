@@ -1,9 +1,9 @@
 
-#' Read broadcast survey data
+#' Read broadcast survey data (for hoot removal)
 #'
 #' @param path Path to surveyor data
 #'
-#' @return
+#' @return Tibble containing lat/long and survey date information
 #' @export
 #'
 #' @examples

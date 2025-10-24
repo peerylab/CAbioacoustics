@@ -1,11 +1,11 @@
 
 #' Create selection tables for CSOW/BDOW or forest owls
 #'
-#' @param df
-#' @param date_time
-#' @param species_group
+#' @param df Data frame with the selection number, JSON name, relative time, common name, BirdNET confidence score, species code, and call type (if applicable)
+#' @param output Directory to store selection tables
+#' @param species_group CSOW/BDOW or forest owls
 #'
-#' @return
+#' @return .BirdNET selection table files
 #' @export
 #'
 #' @examples

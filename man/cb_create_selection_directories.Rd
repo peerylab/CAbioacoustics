@@ -7,7 +7,14 @@
 cb_create_selection_directories(output, directory, species_group)
 }
 \arguments{
-\item{directory}{}
+\item{output}{Main directory to store selection tables}
+
+\item{directory}{Directories to store selection tables by group and cell (e.g., G001/C0001)}
+
+\item{species_group}{Make selection tables for CSOW/BDOW or forest owls}
+}
+\value{
+Folders to hold selection tables
 }
 \description{
 Create directories to store selection tables

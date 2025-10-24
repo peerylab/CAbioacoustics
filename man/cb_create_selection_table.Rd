@@ -7,7 +7,14 @@
 cb_create_selection_table(df, output, species_group)
 }
 \arguments{
-\item{species_group}{}
+\item{df}{Data frame with the selection number, JSON name, relative time, common name, BirdNET confidence score, species code, and call type (if applicable)}
+
+\item{output}{Directory to store selection tables}
+
+\item{species_group}{CSOW/BDOW or forest owls}
+}
+\value{
+.BirdNET selection table files
 }
 \description{
 Create selection tables for CSOW/BDOW or forest owls

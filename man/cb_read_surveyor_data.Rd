@@ -2,15 +2,18 @@
 % Please edit documentation in R/cb_read_surveyor_data.R
 \name{cb_read_surveyor_data}
 \alias{cb_read_surveyor_data}
-\title{Read broadcast survey data}
+\title{Read broadcast survey data (for hoot removal)}
 \usage{
 cb_read_surveyor_data(path)
 }
 \arguments{
 \item{path}{Path to surveyor data}
 }
+\value{
+Tibble containing lat/long and survey date information
+}
 \description{
-Read broadcast survey data
+Read broadcast survey data (for hoot removal)
 }
 \examples{
 \dontrun{

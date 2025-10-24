@@ -2,7 +2,7 @@
 % Please edit documentation in R/cb_make_aru_sf.R
 \name{cb_make_aru_sf}
 \alias{cb_make_aru_sf}
-\title{Make a data frame containing ARUs and UTMs into a simple feature object}
+\title{Convert a data frame containing ARU UTM information into a simple feature object in WGS84}
 \usage{
 cb_make_aru_sf(df)
 }
@@ -13,7 +13,7 @@ cb_make_aru_sf(df)
 A simple feature point object
 }
 \description{
-Make a data frame containing ARUs and UTMs into a simple feature object
+Convert a data frame containing ARU UTM information into a simple feature object in WGS84
 }
 \examples{
 \dontrun{
@@ -23,11 +23,15 @@ tibble::tribble(
   ~cell_id, ~utm_zone, ~utme, ~utmn,
   'C0001', 10, 670282, 4390557,
   'C0001', 10, 670972, 4390553,
-  'C0001', 10, 669829, 4390388
+  'C0001', 10, 669829, 4390388,
+  'C0004', 11, 377972, 3919578
 )
 # convert to simple feature point geometry
-aru_df |>
-  dplyr::group_split(utm_zone) |>
-  purrr::map_dfr(cb_make_aru_sf)
+arus_sf <-
+  aru_df |>
+    purrr::map_dfr(cb_make_aru_sf)
+
+# map
+mapview::mapview(arus_sf)
 }
 }

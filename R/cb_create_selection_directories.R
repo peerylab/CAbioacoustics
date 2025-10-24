@@ -1,10 +1,11 @@
 
 #' Create directories to store selection tables
 #'
-#' @param date_time
-#' @param directory
+#' @param output Main directory to store selection tables
+#' @param directory Directories to store selection tables by group and cell (e.g., G001/C0001)
+#' @param species_group Make selection tables for CSOW/BDOW or forest owls
 #'
-#' @return
+#' @return Folders to hold selection tables
 #' @export
 #'
 #' @examples

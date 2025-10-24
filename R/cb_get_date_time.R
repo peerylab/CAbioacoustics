@@ -1,10 +1,10 @@
 
 #' Get datetime in character format for current or most recent code run
 #'
-#' @param type
-#' @param folder
+#' @param type Current datetime or datetime of most recent code run
+#' @param folder Directory to find datetime if looking for most recent one
 #'
-#' @return
+#' @return Datetime in character format
 #' @export
 #'
 #' @examples
