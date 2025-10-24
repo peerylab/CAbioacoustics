@@ -26,9 +26,7 @@ cb_build_s3_db <- function(s3_df) {
 
   # create these tables in the database
   DBI::dbCreateTable(conn, "s3_contents", s3_template)
-
   DBI::dbAppendTable(conn, "s3_contents", s3_df)
-
   DBI::dbDisconnect(conn)
 
 }
