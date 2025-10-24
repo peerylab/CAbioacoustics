@@ -1,10 +1,14 @@
 
-#' Shiny app to convert WAVs to FLACs
+#' Launch Shiny app to convert ARU SD card WAVs to FLACs named by deployment on an external hard drive
 #'
-#' @return
+#' @return Shiny app
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' # launch app
+#' cb_shiny_wav_to_flac()
+#' }
 
 cb_shiny_wav_to_flac <- function() {
 

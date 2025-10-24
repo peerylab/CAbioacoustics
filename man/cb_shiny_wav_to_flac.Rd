@@ -2,10 +2,19 @@
 % Please edit documentation in R/cb_shiny_wav_to_flac.R
 \name{cb_shiny_wav_to_flac}
 \alias{cb_shiny_wav_to_flac}
-\title{Shiny app to convert WAVs to FLACs}
+\title{Launch Shiny app to convert ARU SD card WAVs to FLACs named by deployment on an external hard drive}
 \usage{
 cb_shiny_wav_to_flac()
 }
+\value{
+Shiny app
+}
 \description{
-Shiny app to convert WAVs to FLACs
+Launch Shiny app to convert ARU SD card WAVs to FLACs named by deployment on an external hard drive
+}
+\examples{
+\dontrun{
+# launch app
+cb_shiny_wav_to_flac()
+}
 }
