@@ -1,7 +1,7 @@
 
 #' Establish credentials for the UW spotted owl database
 #'
-#' @return Saved passwords for spotted owl database
+#' @return Saved passwords in keyring for spotted owl database
 #' @export
 #'
 #' @examples

@@ -2,17 +2,22 @@
 % Please edit documentation in R/cb_segment_flac.R
 \name{cb_segment_flac}
 \alias{cb_segment_flac}
-\title{Segment a flac file using the begin/end time of a BirdNET selection}
+\title{Segment a FLAC file using the begin/end time of a BirdNET selection}
 \usage{
-cb_segment_flac(begin_file, begin_time, end_time)
+cb_segment_flac(input_flac_path, output_flac_path, begin_time, end_time)
 }
 \arguments{
-\item{begin_file}{Name of flac file}
+\item{input_flac_path}{Path for input FLAC file}
 
-\item{begin_time}{Time from start of recording and beginning of a selection}
+\item{output_flac_path}{Path to store FLAC segment}
 
-\item{end_time}{Time from start of recording and end of selection}
+\item{begin_time}{Time from start of recording (beginning of a selection)}
+
+\item{end_time}{Time from start of recording (end of selection)}
+}
+\value{
+FLAC file segment
 }
 \description{
-Segment a flac file using the begin/end time of a BirdNET selection
+Segment a FLAC file using the begin/end time of a BirdNET selection
 }

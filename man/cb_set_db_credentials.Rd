@@ -7,7 +7,7 @@
 cb_set_db_credentials(credentials_path)
 }
 \value{
-Saved passwords for spotted owl database
+Saved passwords in keyring for spotted owl database
 }
 \description{
 Establish credentials for the UW spotted owl database
