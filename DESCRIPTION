@@ -50,7 +50,7 @@ Collate:
     'cb_read_field_maps.R'
     'cb_read_gpx.R'
     'cb_read_surveyor_data.R'
-    'cb_rename_flacs.R'
+    'cb_rename_files.R'
     'cb_sampling_summary.R'
     'cb_save_s3_flac.R'
     'cb_season_dates.R'
