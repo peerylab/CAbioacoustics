@@ -1,11 +1,12 @@
 
-#' Check that Amazon S3 bucket exists
+#' Check that UW-Madison S3 bucket exists
 #'
 #' @return Output will contain `TRUE` if connection to S3 bucket is working
 #' @export
 #'
 #' @examples
 #' \dontrun{
+#' # make sure connected to S3
 #' cb_check_s3()
 #' }
 

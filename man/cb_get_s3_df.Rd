@@ -2,18 +2,19 @@
 % Please edit documentation in R/cb_get_s3_df.R
 \name{cb_get_s3_df}
 \alias{cb_get_s3_df}
-\title{Return a data frame of flac file paths in Amazon S3 bucket}
+\title{Return a data frame of FLAC and JSON file paths from UW-Madison S3 bucket}
 \usage{
 cb_get_s3_df()
 }
 \value{
-A data frame of S3 flac file paths
+A data frame of S3 FLAC and JSON file paths
 }
 \description{
-Return a data frame of flac file paths in Amazon S3 bucket
+Return a data frame of FLAC and JSON file paths from UW-Madison S3 bucket
 }
 \examples{
 \dontrun{
+# return tibble of S3 FLAC and JSON file paths
 s3_flac_df <- cb_get_s3_df()
 }
 }

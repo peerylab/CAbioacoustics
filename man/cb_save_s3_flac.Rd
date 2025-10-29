@@ -19,6 +19,9 @@ Save FLAC files from Amazon S3 locally
 }
 \examples{
 \dontrun{
+# path to FLAC on S3
+amazon_s3_key <- '/Acoustic_Data/ARU_Data/ARU_Sierra_Monitoring/2023/North/G002_V1/G002_V1_C0142_U2/G002_V1_C0142_U2_20230509/G002_V1_C0142_U2_20230509_000100Z.flac'
+# download it
 cb_save_s3_flac(amazon_s3_key, here::here())
 }
 }
