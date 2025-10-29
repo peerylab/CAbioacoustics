@@ -1,10 +1,14 @@
 
-#' Create a database of S3 contents that is easy to query
+#' Create a database of UW-Madison S3 contents that is easy to query
 #'
-#' @return
+#' @return `duckdb` containing S3 file paths
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' # build database
+#' cb_build_s3_db(s3_df)
+#' }
 
 cb_build_s3_db <- function(s3_df) {
 

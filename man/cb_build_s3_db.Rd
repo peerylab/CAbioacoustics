@@ -2,10 +2,19 @@
 % Please edit documentation in R/cb_build_s3_db.R
 \name{cb_build_s3_db}
 \alias{cb_build_s3_db}
-\title{Create a database of S3 contents that is easy to query}
+\title{Create a database of UW-Madison S3 contents that is easy to query}
 \usage{
 cb_build_s3_db(s3_df)
 }
+\value{
+\code{duckdb} containing S3 file paths
+}
 \description{
-Create a database of S3 contents that is easy to query
+Create a database of UW-Madison S3 contents that is easy to query
+}
+\examples{
+\dontrun{
+# build database
+cb_build_s3_db(s3_df)
+}
 }
