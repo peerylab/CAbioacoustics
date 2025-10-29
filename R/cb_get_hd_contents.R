@@ -1,13 +1,17 @@
 
-#' Get FLAC information from a hard drive
+#' Get FLAC information from an external hard drive
 #'
-#' @param drive_path
-#' @param output_dir
+#' @param drive_path Path to external hard drive
+#' @param output_dir Directory to save FLAC information
 #'
-#' @return
+#' @return `csv` containing FLAC file paths, sizes, etc.
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' # get hard drive contents
+#' cb_get_hd_contents('D:/', here::here())
+#' }
 
 cb_get_hd_contents <- function(drive_path, output_dir) {
 

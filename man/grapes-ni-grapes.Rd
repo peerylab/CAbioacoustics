@@ -2,13 +2,31 @@
 % Please edit documentation in R/not_in.R
 \name{\%ni\%}
 \alias{\%ni\%}
-\title{Title}
+\title{Not in operator}
 \usage{
 x \%ni\% table
 }
 \arguments{
-\item{table}{}
+\item{x}{A vector of values to be tested.}
+
+\item{table}{A vector of values to be matched against.}
+}
+\value{
+A logical vector the same length as \code{x}, with \code{TRUE} for elements
+that are \strong{not} found in \code{table} and \code{FALSE} for those that are.
 }
 \description{
-Title
+The \verb{\%ni\%} operator is a convenience function that returns a logical vector
+indicating whether elements of one vector are \strong{not} present in another.
+It is the inverse of the \code{\%in\%} operator.
+}
+\examples{
+\dontrun{
+# Example usage:
+c("a", "b", "c") \%ni\% c("b", "d")
+# Returns: TRUE FALSE TRUE
+
+# Equivalent to:
+!(c("a", "b", "c") \%in\% c("b", "d"))
+}
 }

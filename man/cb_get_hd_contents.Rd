@@ -2,13 +2,24 @@
 % Please edit documentation in R/cb_get_hd_contents.R
 \name{cb_get_hd_contents}
 \alias{cb_get_hd_contents}
-\title{Get FLAC information from a hard drive}
+\title{Get FLAC information from an external hard drive}
 \usage{
 cb_get_hd_contents(drive_path, output_dir)
 }
 \arguments{
-\item{output_dir}{}
+\item{drive_path}{Path to external hard drive}
+
+\item{output_dir}{Directory to save FLAC information}
+}
+\value{
+\code{csv} containing FLAC file paths, sizes, etc.
 }
 \description{
-Get FLAC information from a hard drive
+Get FLAC information from an external hard drive
+}
+\examples{
+\dontrun{
+# get hard drive contents
+cb_get_hd_contents('D:/', here::here())
+}
 }
