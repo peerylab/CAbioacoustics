@@ -2,10 +2,19 @@
 % Please edit documentation in R/cb_connect_s3_db.R
 \name{cb_connect_s3_db}
 \alias{cb_connect_s3_db}
-\title{Connect to database containing S3 contents}
+\title{Connect to database containing UW-Madison S3 contents}
 \usage{
 cb_connect_s3_db()
 }
+\value{
+\code{duckdb} connection
+}
 \description{
-Connect to database containing S3 contents
+Connect to database containing UW-Madison S3 contents
+}
+\examples{
+\dontrun{
+# connect to duckdb of S3 file paths
+cb_connect_s3_db()
+}
 }

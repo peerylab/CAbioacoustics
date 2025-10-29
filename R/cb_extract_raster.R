@@ -1,14 +1,75 @@
 
-#' Title
+#' Extract continuous raster data at the ARU-level (and within buffers around an ARU) or hex-level
 #'
-#' @param sf_object
-#' @param unit
-#' @param buffer
+#' @param sf_object `sf` `POINT` object
+#' @param scale aru or hex
+#' @param raster_layer Path to raster layer
+#' @param raster_name Name of raster (for naming raster covariate)
+#' @param buffer_size Size in meters of buffers
+#' @param fun Mean, SD, min, max, etc.
 #'
 #' @return
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' library(CAbioacoustics)
+#' library(tidyverse)
+#' library(terra)
+#' library(sf)
+#'
+#' # load canopy cover raster
+#' # change path to research drive here if necessary
+#' r_cfo_cc <- rast("Z:/CAbioacoustics_gis/cfo/cfo_canopy_cover_2020.tif")
+#'
+#' # create db connection
+#' cb_connect_db()
+#'
+#' # read in 2024 sierra monitoring deployments
+#' deployments_df <-
+#'   tbl(conn, "acoustic_field_visits") |>
+#'   filter(survey_year == 2024 & study_type == 'Sierra Monitoring') |>
+#'   select(
+#'   id,
+#'   study_type,
+#'   group_id,
+#'   visit_id,
+#'   cell_id,
+#'   unit_number,
+#'   deployment_name,
+#'   survey_year,
+#'   deploy_date,
+#'   recover_date,
+#'   utm_zone,
+#'   utme,
+#'   utmn
+#'   ) |>
+#'   # pull into memory
+#'   collect()
+#'
+#' # disconnect now
+#' cb_disconnect_db()
+#'
+#' # make ARUs sf, convert to WGS 84
+#' deployments_sf <-
+#'   deployments_df |>
+#'   map_dfr(cb_make_aru_sf)
+#'
+#' # get mean, SD of canopy cover in several buffers around ARUs
+#' deployments_cc_buffer_sf <-
+#'   cb_extract_raster(
+#'     sf_object = deployments_sf,
+#'     scale = 'aru',
+#'     # CFO canopy cover raster
+#'     raster_layer = r_cfo_cc,
+#'     # name you want the covariate to have
+#'     raster_name = 'cfo_cc',
+#'     # buffer sizes in meters
+#'     buffer_size = c(100, 500, 1000),
+#'     # get mean, SD of canopy cover for different buffers
+#'     fun = c('mean', 'stdev')
+#'   )
+#' }
 
 cb_extract_raster <- function(sf_object, scale, raster_layer, raster_name, buffer_size = NULL, fun = NULL) {
 

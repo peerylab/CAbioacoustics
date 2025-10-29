@@ -1,10 +1,14 @@
 
-#' Connect to database containing S3 contents
+#' Connect to database containing UW-Madison S3 contents
 #'
-#' @return
+#' @return `duckdb` connection
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' # connect to duckdb of S3 file paths
+#' cb_connect_s3_db()
+#' }
 
 cb_connect_s3_db <- function() {
 
