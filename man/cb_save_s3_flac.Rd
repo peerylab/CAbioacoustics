@@ -2,12 +2,12 @@
 % Please edit documentation in R/cb_save_s3_flac.R
 \name{cb_save_s3_flac}
 \alias{cb_save_s3_flac}
-\title{Save FLAC files from Amazon S3 locally}
+\title{Save FLAC files from UW-Madison S3 locally. If needing to download a large batch of S3 FLACs, best to use \code{cb_globus_transfer}}
 \usage{
 cb_save_s3_flac(file, destination_folder)
 }
 \arguments{
-\item{file}{Path to FLAC file on Amazon S3}
+\item{file}{Path to FLAC file on  UW-Madison S3}
 
 \item{destination_folder}{Path to folder where FLAC will be downloaded}
 }
@@ -15,7 +15,7 @@ cb_save_s3_flac(file, destination_folder)
 FLAC file
 }
 \description{
-Save FLAC files from Amazon S3 locally
+Save FLAC files from UW-Madison S3 locally. If needing to download a large batch of S3 FLACs, best to use \code{cb_globus_transfer}
 }
 \examples{
 \dontrun{

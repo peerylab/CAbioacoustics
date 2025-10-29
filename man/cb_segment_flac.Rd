@@ -21,3 +21,20 @@ FLAC file segment
 \description{
 Segment a FLAC file using the begin/end time of a BirdNET selection
 }
+\examples{
+\dontrun{
+# set FLAC parameters
+input_flac_path <- "Z:/Acoustic_Data/ARU_Data_Raw/ARU_Sierra_Monitoring/2025/South/G055_V1/G055_V1_C4928_U1/G055_V1_C4928_U1_20250519/G055_V1_C4928_U1_20250519_060002Z.flac"
+output_flac_path <- "C:/Users/jmwin/OneDrive/Desktop/test_segment.flac"
+begin_time <- 3
+end_time <- 6
+
+# create FLAC segment
+cb_segment_flac(
+  input_flac_path,
+  output_flac_path,
+  begin_time,
+  end_time
+)
+}
+}

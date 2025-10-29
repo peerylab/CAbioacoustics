@@ -1,7 +1,7 @@
 
-#' Save FLAC files from Amazon S3 locally
+#' Save FLAC files from UW-Madison S3 locally. If needing to download a large batch of S3 FLACs, best to use `cb_globus_transfer`
 #'
-#' @param file Path to FLAC file on Amazon S3
+#' @param file Path to FLAC file on  UW-Madison S3
 #' @param destination_folder Path to folder where FLAC will be downloaded
 #'
 #' @return FLAC file
