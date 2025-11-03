@@ -209,52 +209,52 @@ get_file_info <- function(path) {
 }
 
 
-# get all daily subfolders
-get_subdirectory_contents <- function(df) {
+# # get all daily subfolders
+# get_subdirectory_contents <- function(df) {
+#
+#   subfolders <-
+#     fs::dir_ls(
+#       path = df$value,
+#       recurse = 2
+#     )
+#
+#   subfolder_length <- max(stringr::str_length(subfolders))
+#
+#   daily_subfolders <-
+#     subfolders |>
+#     tibble::as_tibble() |>
+#     dplyr::filter(stringr::str_length(value) == subfolder_length) |>
+#     dplyr::pull(value)
+#
+#   return(daily_subfolders)
+#
+# }
 
-  subfolders <-
-    fs::dir_ls(
-      path = df$value,
-      recurse = 2
-    )
 
-  subfolder_length <- max(stringr::str_length(subfolders))
-
-  daily_subfolders <-
-    subfolders |>
-    tibble::as_tibble() |>
-    dplyr::filter(stringr::str_length(value) == subfolder_length) |>
-    dplyr::pull(value)
-
-  return(daily_subfolders)
-
-}
-
-
-# get folders/files for a directory
-get_files_next_depth <- function(path) {
-
-  df <-
-    fs::dir_ls(
-      path,
-      recurse = 0
-    ) |>
-    tibble::as_tibble() |>
-    dplyr::mutate(upper_level = path)
-
-  if (dim(df)[1] == 0) {
-
-    df <-
-      tibble::tibble(
-        value = NA,
-        upper_level = path
-      )
-
-  }
-
-  return(df)
-
-}
+# # get folders/files for a directory
+# get_files_next_depth <- function(path) {
+#
+#   df <-
+#     fs::dir_ls(
+#       path,
+#       recurse = 0
+#     ) |>
+#     tibble::as_tibble() |>
+#     dplyr::mutate(upper_level = path)
+#
+#   if (dim(df)[1] == 0) {
+#
+#     df <-
+#       tibble::tibble(
+#         value = NA,
+#         upper_level = path
+#       )
+#
+#   }
+#
+#   return(df)
+#
+# }
 
 
 # move flacs to delete later (data proofing)
@@ -279,22 +279,22 @@ move_jsons_delete <- function(x) {
 }
 
 
-# write pipeline files in digestible batches for the dtabase website
-write_pipeline_batches <- function(df, date_time) {
-
-  region <- unique(df$region)
-  study <- unique(df$study_type)
-  csv_num <- unique(df$csv_num)
-
-  df |>
-    dplyr::select(file_name) |>
-    write.table(
-      stringr::str_glue(here::here('code_outputs/effort_pipelines_{date_time}/{region}_{study}_{csv_num}_pipeline.csv')),
-      row.names = FALSE,
-      col.names = FALSE
-    )
-
-}
+# # write pipeline files in digestible batches for the dtabase website
+# write_pipeline_batches <- function(df, date_time) {
+#
+#   region <- unique(df$region)
+#   study <- unique(df$study_type)
+#   csv_num <- unique(df$csv_num)
+#
+#   df |>
+#     dplyr::select(file_name) |>
+#     write.table(
+#       stringr::str_glue(here::here('code_outputs/effort_pipelines_{date_time}/{region}_{study}_{csv_num}_pipeline.csv')),
+#       row.names = FALSE,
+#       col.names = FALSE
+#     )
+#
+# }
 
 
 # delete a record from the database
@@ -307,30 +307,30 @@ delete_record <- function(table_name, record_id, con) {
 }
 
 
-# go from WGS84 to utm zone-specific crs
-wgs84_to_utm <- function(df) {
-
-  # get the crs depending on utm zone
-  zone <- unique(df$utm_zone)
-
-  if (zone == 10) {
-
-    aru_crs = 26910
-
-  } else {
-
-    aru_crs = 26911
-
-  }
-
-  # convert to utm zone-specific crs
-  df <-
-    df |>
-    sf::st_transform(aru_crs)
-
-  return(df)
-
-}
+# # go from WGS84 to utm zone-specific crs
+# wgs84_to_utm <- function(df) {
+#
+#   # get the crs depending on utm zone
+#   zone <- unique(df$utm_zone)
+#
+#   if (zone == 10) {
+#
+#     aru_crs = 26910
+#
+#   } else {
+#
+#     aru_crs = 26911
+#
+#   }
+#
+#   # convert to utm zone-specific crs
+#   df <-
+#     df |>
+#     sf::st_transform(aru_crs)
+#
+#   return(df)
+#
+# }
 
 
 get_surveyor_overlap <- function(df, human_hoots) {
