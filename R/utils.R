@@ -454,6 +454,17 @@ get_surveyor_overlap <- function(df, human_hoots) {
 }
 
 
+# get duration of flac files
+get_flac_duration <- function(file) {
+
+  tryCatch({
+    info <- av::av_media_info(file)
+    info$duration  # duration in seconds
+  }, error = function(e) NA_real_)
+
+}
+
+
 # shiny app functions -----------------------------------------------------
 
 get_deployment_info <- function(sd_card_path, year) {
