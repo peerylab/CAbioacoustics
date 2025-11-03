@@ -61,6 +61,7 @@ Collate:
     'cb_shiny_wav_to_flac.R'
     'cb_show_globus_endpoints.R'
     'cb_update_birdnet_db.R'
+    'cb_write_pipeline_batches.R'
     'not_in.R'
     'theme_cb.R'
     'utils-pipe.R'
