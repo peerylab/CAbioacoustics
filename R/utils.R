@@ -1,4 +1,25 @@
 
+# function to fill in missing survey days (diurnal bird outputs)
+complete_survey_days <- function(df, start_date, end_date) {
+
+  df |>
+    # complete list of dates for each cell_unit by year
+    tidyr::complete(
+      deployment_name,
+      date = seq.Date(
+        lubridate::as_date(start_date),
+        lubridate::as_date(end_date),
+        by = "days"
+      ),
+      # fill in no effort
+      fill = list(
+        survey_hours = as.numeric(NA)
+      )
+    )
+
+}
+
+
 # function to fill in missing survey nights (i.e., nights with no effort)
 complete_survey_nights <- function(df, start_date, end_date) {
 
