@@ -15,12 +15,12 @@
 #'   'C0001', 10, 670282, 4390557,
 #'   'C0001', 10, 670972, 4390553,
 #'   'C0001', 10, 669829, 4390388,
-#'   'C0004', 11, 377972, 3919578
+#'   'C9999', 11, 377972, 3919578
 #' )
 #' # convert to simple feature point geometry
 #' arus_sf <-
 #'   aru_df |>
-#'     purrr::map_dfr(cb_make_aru_sf)
+#'     cb_make_aru_sf
 #'
 #' # map
 #' mapview::mapview(arus_sf)
@@ -36,10 +36,11 @@ cb_make_aru_sf <- function(df) {
         utm_zone == 11 ~ 26911
       )
     ) |>
-    split(~utm_zone) |>
-    purrr::map_dfr(~ .x |>
-                     sf::st_as_sf(coords = c("utme", "utmn"), crs = unique(.x$crs)) |>
-                     sf::st_transform(4326)
+    dplyr::group_split(utm_zone) |>
+    purrr::map_dfr(
+      ~ .x %>%
+        sf::st_as_sf(coords = c("utme", "utmn"), crs = unique(.x$crs)) %>%
+        sf::st_transform(4326)
     ) |>
     dplyr::select(-utm_zone, -crs)
 
