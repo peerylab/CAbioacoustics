@@ -31,6 +31,7 @@ Collate:
     'cb_flac_file_name.R'
     'cb_flac_file_structure.R'
     'cb_get_audio_duration.R'
+    'cb_get_coords.R'
     'cb_get_date_time.R'
     'cb_get_flac_paths.R'
     'cb_get_hd_contents.R'
