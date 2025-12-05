@@ -32,8 +32,8 @@ cb_make_aru_sf <- function(df) {
     df |>
     dplyr::mutate(
       crs = dplyr::case_when(
-        utm_zone == 10 ~ 26910,
-        utm_zone == 11 ~ 26911
+        as.integer(utm_zone) == 10 ~ 26910,
+        as.integer(utm_zone) == 11 ~ 26911
       )
     ) |>
     dplyr::group_split(utm_zone) |>
