@@ -12,7 +12,7 @@ cb_filename_to_datetime(x, type = c("datetime", "date"))
 \item{type}{Datetime or date}
 }
 \value{
-Datetime or date
+Datetime or date in PDT
 }
 \description{
 Extract date/datetime from a path or filename

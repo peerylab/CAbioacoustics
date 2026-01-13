@@ -4,7 +4,7 @@
 #' @param x Path or filename
 #' @param type Datetime or date
 #'
-#' @return Datetime or date
+#' @return Datetime or date in PDT
 #' @export
 #'
 #' @examples
