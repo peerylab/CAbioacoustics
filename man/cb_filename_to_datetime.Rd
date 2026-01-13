@@ -23,11 +23,12 @@ df <-
   tibble::tibble(
   filename = 'G001_V1_C0130_U2_20240527_060108Z.flac'
   )
+
 # get datetime
-cb_filename_to_datetime(d$filename, 'datetime')
+cb_filename_to_datetime(df$filename, 'datetime')
 
 # or date
-cb_filename_to_datetime(d$filename, 'date')
+cb_filename_to_datetime(df$filename, 'date')
 
 # or using dplyr::mutate()
 df |>
