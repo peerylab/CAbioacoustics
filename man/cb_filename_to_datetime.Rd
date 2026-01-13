@@ -17,3 +17,20 @@ Datetime or date
 \description{
 Extract date/datetime from a path or filename
 }
+\examples{
+\dontrun{
+df <-
+  tibble::tibble(
+  filename = 'G001_V1_C0130_U2_20240527_060108Z.flac'
+  )
+# get datetime
+cb_filename_to_datetime(d$filename, 'datetime')
+
+# or date
+cb_filename_to_datetime(d$filename, 'date')
+
+# or using dplyr::mutate()
+df |>
+  dplyr::mutate(date = cb_filename_to_datetime(filename, 'date'))
+}
+}

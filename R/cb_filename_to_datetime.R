@@ -21,7 +21,8 @@
 #'
 #' # or using dplyr::mutate()
 #' df |>
-#'   mutate(date = cb_filename_to_datetime(filename, 'date'))
+#'   dplyr::mutate(date = cb_filename_to_datetime(filename, 'date'))
+#' }
 
 cb_filename_to_datetime <- function(x, type = c('datetime', 'date')) {
 
