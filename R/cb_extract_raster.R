@@ -53,7 +53,7 @@
 #' # make ARUs sf, convert to WGS 84
 #' deployments_sf <-
 #'   deployments_df |>
-#'   map_dfr(cb_make_aru_sf)
+#'   cb_make_aru_sf()
 #'
 #' # get mean, SD of canopy cover in several buffers around ARUs
 #' deployments_cc_buffer_sf <-
