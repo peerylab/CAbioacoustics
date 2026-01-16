@@ -27,10 +27,12 @@
 
 cb_filename_to_datetime <- function(x, type = c('datetime', 'date')) {
 
+  # datetime
   if (type == 'datetime') {
 
     lubridate::ymd_hms(stringr::str_extract(x, '[0-9]{8}_[0-9]{6}'), tz = 'America/Los_angeles')
 
+  # date
   } else if (type == 'date') {
 
     lubridate::as_date(lubridate::ymd_hms(stringr::str_extract(x, '[0-9]{8}_[0-9]{6}'), tz = 'America/Los_angeles'))
