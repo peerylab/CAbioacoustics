@@ -499,6 +499,17 @@ check_unique_values <- function(df) {
 
 }
 
+# function to write out cleaned vetted detections to import to the database
+write_detections_csvs <- function(df) {
+
+  study_type <- unique(df$study_type)
+
+  df |>
+    dplyr::select(-study_type) |>
+    readr::write_csv(stringr::str_glue(here::here('detection_import_to_db/{study_type}_proofed_detections_{date_time}.csv')))
+
+}
+
 
 # shiny app functions -----------------------------------------------------
 
