@@ -486,6 +486,20 @@ get_flac_duration <- function(file) {
 }
 
 
+# selection table check function
+check_unique_values <- function(df) {
+
+  # see what unique entries are for each field
+  cat('Detector\n', unique(df$Detector), '\n\n')
+  cat('Species\n', unique(df$Species), '\n\n')
+  cat('Call Type\n', unique(df$`Call Type`), '\n\n')
+  cat('Sex\n', unique(df$Sex), '\n\n')
+  cat('Keep\n', unique(df$Keep), '\n\n')
+  cat('Overwrite\n', unique(df$Overwrite), '\n\n')
+
+}
+
+
 # shiny app functions -----------------------------------------------------
 
 get_deployment_info <- function(sd_card_path, year) {
