@@ -14,6 +14,10 @@
 
 cb_cells_by_ownership <- function(ownership) {
 
+  if (!requireNamespace("sf", quietly = TRUE)) {
+    stop("Package 'sf' is required for this function, please load the library first.")
+  }
+
   # define allowed values
   allowed_values <- c('any', 'other', 'usfs', 'nps')
 
