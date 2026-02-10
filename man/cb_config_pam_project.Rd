@@ -4,10 +4,10 @@
 \alias{cb_config_pam_project}
 \title{Write configuration parameters for PAM R project}
 \usage{
-cb_config_pam_project(study_year, study_type, study_path)
+cb_config_pam_project(study_year, study_type, study_drive)
 }
 \arguments{
-\item{study_path}{}
+\item{study_drive}{}
 }
 \description{
 Write configuration parameters for PAM R project

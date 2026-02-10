@@ -3,7 +3,7 @@
 #'
 #' @param study_year
 #' @param study_type
-#' @param study_path
+#' @param study_drive
 #'
 #' @return
 #' @export
@@ -17,14 +17,14 @@
 #' )
 #' }
 
-cb_config_pam_project <- function(study_year, study_type, study_path) {
+cb_config_pam_project <- function(study_year, study_type, study_drive) {
 
   # create config parameters
   config <-
     list(
       study_year = study_year,
       study_type = study_type,
-      study_path = study_path
+      study_drive = study_drive
     )
 
   # create folder to store parameters
