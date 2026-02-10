@@ -12,7 +12,6 @@
 #' )
 #' }
 
-
 cb_create_pam_project <- function(project_name, base_dir = getwd()) {
 
   # folder paths
