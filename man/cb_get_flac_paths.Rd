@@ -4,10 +4,12 @@
 \alias{cb_get_flac_paths}
 \title{Get path info for FLACs on research drive}
 \usage{
-cb_get_flac_paths(root_path)
+cb_get_flac_paths(root_path, deployment_string)
 }
 \arguments{
 \item{root_path}{Path to FLAC files}
+
+\item{deployment_string}{Deployment naming convention}
 }
 \value{
 Tibble containing FLAC paths and size of files (in bytes)
@@ -21,6 +23,6 @@ Get path info for FLACs on research drive
 flac_root <- "Z:/Acoustic_Data/ARU_Data_Raw/ARU_Sierra_Monitoring/2025"
 
 # get df of flac info
-flac_file_info_df <- cb_get_flac_paths(flac_root)
+flac_file_info_df <- cb_get_flac_paths(flac_root, "G(0|C|M|N|P|R)[0-9]{2}_V[1-5]{1}_C[0-9]{4}_U[1-5]{1}")
 }
 }

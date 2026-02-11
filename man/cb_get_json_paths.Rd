@@ -4,10 +4,12 @@
 \alias{cb_get_json_paths}
 \title{Get path info for JSONs on research drive}
 \usage{
-cb_get_json_paths(root_path)
+cb_get_json_paths(root_path, deployment_string)
 }
 \arguments{
 \item{root_path}{Path to JSON files}
+
+\item{deployment_string}{Deployment naming convention}
 }
 \value{
 Tibble containing JSON paths and size of files (in bytes)
@@ -21,6 +23,6 @@ Get path info for JSONs on research drive
 json_root <- "Z:/Acoustic_Data/ARU_Data_Processed/BirdNET_Results_JSON/JSON_Sierra_Monitoring/2025"
 
 # get df of flac info
-json_file_info_df <- cb_get_json_paths(json_root)
+json_file_info_df <- cb_get_json_paths(json_root, "G(0|C|M|N|P|R)[0-9]{2}_V[1-5]{1}_C[0-9]{4}_U[1-5]{1}")
 }
 }
