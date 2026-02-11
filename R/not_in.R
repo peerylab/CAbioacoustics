@@ -20,6 +20,7 @@
 #' # Equivalent to:
 #' !(c("a", "b", "c") %in% c("b", "d"))
 #' }
+#' @export
 
 "%ni%" <- function(x, table) {
 

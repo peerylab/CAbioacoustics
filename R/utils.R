@@ -354,6 +354,45 @@ delete_record <- function(table_name, record_id, con) {
 # }
 
 
+# for extracting utm zone from field maps locations
+wgs84_to_utm_sf <- function(df) {
+
+  zone <- unique(df$utm_zone)
+
+  if (zone == 10) {
+
+    aru_crs = 26910
+
+  }
+
+  else {
+
+    aru_crs = 26911
+
+  }
+
+  df <-
+    sf::st_transform(df, aru_crs) %>%
+    dplyr::mutate(
+      utme = sf::st_coordinates(.)[,1],
+      utmn = sf::st_coordinates(.)[,2]
+    ) |>
+    sf::st_drop_geometry()
+
+  return(df)
+
+}
+
+
+# read gpx from gps units
+read_gpx <- function(x) {
+
+  sf::st_read(x, layer = "waypoints") |>
+    dplyr::select(name, time, geometry)
+
+}
+
+
 get_surveyor_overlap <- function(df, human_hoots) {
 
   # get birdnet file path and filename (XXXX.flac)
