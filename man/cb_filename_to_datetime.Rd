@@ -4,12 +4,18 @@
 \alias{cb_filename_to_datetime}
 \title{Extract date/datetime from a path or filename}
 \usage{
-cb_filename_to_datetime(x, type = c("datetime", "date"))
+cb_filename_to_datetime(
+  x,
+  type = c("datetime", "date"),
+  timezone = "America/Los_angeles"
+)
 }
 \arguments{
 \item{x}{Path or filename}
 
 \item{type}{Datetime or date}
+
+\item{time_zone}{Timezone of files}
 }
 \value{
 Datetime or date in PDT
@@ -25,13 +31,13 @@ df <-
   )
 
 # get datetime
-cb_filename_to_datetime(df$filename, 'datetime')
+cb_filename_to_datetime(df$filename, 'datetime', timezone = 'America/Los_angeles')
 
 # or date
-cb_filename_to_datetime(df$filename, 'date')
+cb_filename_to_datetime(df$filename, 'date', timezone = 'America/Los_angeles')
 
 # or using dplyr::mutate()
 df |>
-  dplyr::mutate(date = cb_filename_to_datetime(filename, 'date'))
+  dplyr::mutate(date = cb_filename_to_datetime(filename, 'date', timezone = 'America/Los_angeles'))
 }
 }
