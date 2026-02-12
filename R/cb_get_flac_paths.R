@@ -40,7 +40,8 @@ cb_get_flac_paths <- function(root_path, deployment_string) {
     dplyr::transmute(
       path = stringr::str_replace_all(path, '\\\\', '/'),
       file_name = basename(path),
-      deployment_name = stringr::str_extract(file_name, deployment_string)
+      deployment_name = stringr::str_extract(file_name, deployment_string),
+      bytes = bytes
     ) |>
     # organize
     dplyr::select(deployment_name, path, file_name, bytes)
