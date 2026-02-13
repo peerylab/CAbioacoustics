@@ -4,10 +4,10 @@
 \alias{cb_config_pam_project}
 \title{Write configuration parameters for PAM R project}
 \usage{
-cb_config_pam_project(study_year, study_type, study_drive)
+cb_config_pam_project(study_year, study_type, study_drive, study_timezone)
 }
 \arguments{
-\item{study_drive}{}
+\item{study_timezone}{}
 }
 \description{
 Write configuration parameters for PAM R project
@@ -17,7 +17,8 @@ Write configuration parameters for PAM R project
 cb_config_pam_project(
   study_year = lubridate::year(Sys.Date()),
   study_type = 'Sierra_Monitoring',
-  study_path = 'Z:'
+  study_path = 'Z:',
+  study_timezone = 'America/Los_angeles'
 )
 }
 }
