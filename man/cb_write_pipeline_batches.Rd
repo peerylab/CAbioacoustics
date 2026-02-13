@@ -4,10 +4,10 @@
 \alias{cb_write_pipeline_batches}
 \title{Write effort pipeline csv files}
 \usage{
-cb_write_pipeline_batches(df)
+cb_write_pipeline_batches(df, output_path)
 }
 \arguments{
-\item{df}{}
+\item{output_path}{}
 }
 \value{
 csv files of effort (i.e., row for each flac file)
