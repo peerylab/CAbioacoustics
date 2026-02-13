@@ -550,6 +550,21 @@ write_detections_csvs <- function(df) {
 }
 
 
+# function: if time is after midnight but before, say, 04:00, use previous date
+shift_post_midnight <- function(date, cutoff_hour = 4) {
+
+  date_adjusted <-
+    if_else(
+      hour(hms::as_hms(date)) < cutoff_hour,
+      as_date(date) - 1,
+      as_date(date)
+    )
+
+  return(date_adjusted)
+
+}
+
+
 # shiny app functions -----------------------------------------------------
 
 get_deployment_info <- function(sd_card_path, year) {
