@@ -51,6 +51,7 @@ Collate:
     'cb_play_selection.R'
     'utils.R'
     'cb_query_effort_detections_occ.R'
+    'cb_query_multi_state_occ.R'
     'cb_read_birdnet_json.R'
     'cb_read_birdnet_selection.R'
     'cb_read_field_maps.R'
