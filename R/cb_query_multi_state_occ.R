@@ -278,6 +278,7 @@ cb_query_multi_state_occ <- function(species, template_used, study_type, cell_id
         all(is.na(owl_status)) ~ as.character(NA), # NA; unsurveyed day
         all(owl_status == "no owls") ~ "no owls", # all days empty
         any(owl_status == "pair") ~ "pair", # any day has a pair
+        all(is.na(owl_status) | owl_status == "no owls") ~ "no owls", # either NA or no owls should be no owls
         TRUE ~ "single" # otherwise single
       ),
       .groups = "drop"
