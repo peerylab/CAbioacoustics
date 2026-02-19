@@ -171,7 +171,8 @@ cb_query_effort_detections_occ <- function(species, template_used, study_type, c
     occ_dates_df |>
     dplyr::group_by(survey_year, occasion) |>
     dplyr::summarize(
-      mean_date = mean(day_of_season)
+      # mean_date = mean(day_of_season)
+      mean_date = mean(lubridate::yday(survey_night))
     ) |>
     suppressMessages() |>
     dplyr::ungroup()
