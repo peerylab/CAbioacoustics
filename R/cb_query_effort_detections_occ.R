@@ -2,7 +2,7 @@
 #' Query spotted owl database to format data for occupancy modeling (static, single-season or dynamic models)
 #'
 #' @param species Vector of species (CSOW or BDOW)
-#' @param template BirdNET version used
+#' @param template_used BirdNET version used
 #' @param study_type Vector of study types (e.g., Sierra Monitoring, Sierra Projects)
 #' @param cell_ids Vector cell IDs
 #' @param start_year Start year
@@ -19,10 +19,14 @@
 #'
 #' @examples
 
-cb_query_effort_detections_occ <- function(species, template, study_type, cell_ids, start_year, end_year, start_date, end_date, occasion_length, num_occasions, type) {
+cb_query_effort_detections_occ <- function(species, template_used, study_type, cell_ids, start_year, end_year, start_date, end_date, occasion_length, num_occasions, type) {
 
   focal_species <- species
-  template_used <- template
+  study <- study_type
+  template <- template_used
+  min_year <- start_year
+  max_year <- end_year
+  focal_cells <- cell_ids
 
   # query acoustic field deployments table
   deployments_sql_df <-
@@ -55,10 +59,8 @@ cb_query_effort_detections_occ <- function(species, template, study_type, cell_i
   efforts_deployments_detections_sql_df <-
     efforts_sql_df |>
     # deployment acoustic_field_visit_id = effort id; rename to join
-    # dplyr::left_join(deployments_sql_df |> dplyr::rename(acoustic_field_visit_id = id), by = dplyr::join_by('acoustic_field_visit_id')) |>
     dplyr::left_join(deployments_sql_df |> dplyr::rename(acoustic_field_visit_id = id), by = 'acoustic_field_visit_id') |>
     # detections effort id = effort id
-    # dplyr::left_join(detections_sql_df |> dplyr::rename(effort_id = acoustic_effort_id), by = dplyr::join_by('effort_id')) |>
     dplyr::left_join(detections_sql_df |> dplyr::rename(effort_id = acoustic_effort_id), by = 'effort_id') |>
     # clean up
     dplyr::select(survey_date:unit_number, detection)
@@ -70,10 +72,10 @@ cb_query_effort_detections_occ <- function(species, template, study_type, cell_i
     # mutate(survey_year = sql("cast(survey_year as signed)")) |>
     # filter to study type, years, and appropriate survey hours for owls; usfs cells only
     dplyr::filter(
-      cell_id %in% cell_ids,
+      cell_id %in% focal_cells,
       study_type == study,
-      survey_year >= start_year,
-      survey_year <= end_year,
+      survey_year >= min_year,
+      survey_year <= max_year,
       # keep efforts from 8:00PM to 6:00AM (for owls)
       survey_hour >= '20:00' & survey_hour < '23:59' | survey_hour >= '00:00' & survey_hour < '05:59'
     ) |>
@@ -117,7 +119,6 @@ cb_query_effort_detections_occ <- function(species, template, study_type, cell_i
 
   efforts_detections_df <-
     efforts_df |>
-    # dplyr::left_join(detections_df, by = dplyr::join_by('cell_id', 'unit_number', 'survey_year', 'survey_night')) |>
     dplyr::left_join(detections_df, by = c('cell_id', 'unit_number', 'survey_year', 'survey_night')) |>
     # create a cell_unit field; fix empty project area
     dplyr::mutate(
@@ -144,8 +145,8 @@ cb_query_effort_detections_occ <- function(species, template, study_type, cell_i
 
   occ_dates_df <-
     create_season_dates(
-      start_year = start_year,
-      end_year = end_year,
+      start_year = min_year,
+      end_year = max_year,
       start_date = start_date,
       end_date = end_date
     ) |>
@@ -181,7 +182,6 @@ cb_query_effort_detections_occ <- function(species, template, study_type, cell_i
     dplyr::filter(survey_hours > 0) |>
     dplyr::group_by(cell_id, survey_year, survey_night) |>
     dplyr::tally(name = 'arus') |>
-    # dplyr::left_join(occ_dates_df |> dplyr::select(-day_of_season), by = dplyr::join_by('survey_year', 'survey_night')) |>
     dplyr::left_join(occ_dates_df |> dplyr::select(-day_of_season), by = c('survey_year', 'survey_night')) |>
     dplyr::group_by(cell_id, survey_year, occasion) |>
     dplyr::summarize(
@@ -213,7 +213,6 @@ cb_query_effort_detections_occ <- function(species, template, study_type, cell_i
     # just focus on any efforts with detections
     dplyr::filter(detection == 1) |>
     dplyr::distinct(cell_id, survey_year, survey_night, detection) |>
-    # left_join(season_dates_df |> select(-day_of_season)) |>
     dplyr::group_by(cell_id, survey_year) |>
     dplyr::tally(name = 'detection_nights') |>
     dplyr::ungroup() |>
@@ -245,10 +244,6 @@ cb_query_effort_detections_occ <- function(species, template, study_type, cell_i
       )
     ) |>
     # join in various effort data frames
-    # dplyr::left_join(detection_critera_df, by = dplyr::join_by('cell_id', 'survey_year')) |>
-    # dplyr::left_join(active_arus_df, by = dplyr::join_by('cell_id', 'survey_year', 'occasion')) |>
-    # dplyr::left_join(survey_hours_df, by = dplyr::join_by('cell_id', 'survey_year', 'occasion')) |>
-    # dplyr::left_join(dates_df, by = dplyr::join_by('survey_year', 'occasion')) |>
     dplyr::left_join(detection_critera_df, by = c('cell_id', 'survey_year')) |>
     dplyr::left_join(active_arus_df, by = c('cell_id', 'survey_year', 'occasion')) |>
     dplyr::left_join(survey_hours_df, by = c('cell_id', 'survey_year', 'occasion')) |>

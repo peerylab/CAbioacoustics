@@ -14,6 +14,7 @@
 #'
 #' @returns List of three data frames containing encounter histories (long and wide format) and effort (wide format)
 #' @export
+#' @include utils.R
 #'
 #' @examples
 #' \dontrun{
@@ -81,6 +82,7 @@ cb_query_multi_state_occ <- function(species, template_used, study_type, cell_id
   template <- template_used
   min_year <- start_year
   max_year <- end_year
+  focal_cells <- cell_ids
 
   # query acoustic field deployments table
   deployments_sql_df <-
@@ -123,7 +125,7 @@ cb_query_multi_state_occ <- function(species, template_used, study_type, cell_id
     # mutate(survey_year = sql("cast(survey_year as signed)")) |>
     # filter to study type, years, and appropriate survey hours for owls; usfs cells only
     filter(
-      # cell_id %in% cell_ids,
+      cell_id %in% focal_cells,
       study_type == study,
       survey_year >= min_year,
       survey_year <= max_year,
@@ -206,8 +208,8 @@ cb_query_multi_state_occ <- function(species, template_used, study_type, cell_id
   # create data frame of occasion number and date
   occ_dates_df <-
     CAbioacoustics:::create_season_dates(
-      start_year = start_year,
-      end_year = end_year,
+      start_year = min_year,
+      end_year = max_year,
       start_date = start_date,
       end_date = end_date
     ) |>

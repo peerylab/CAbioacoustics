@@ -6,7 +6,7 @@
 \usage{
 cb_query_effort_detections_occ(
   species,
-  template,
+  template_used,
   study_type,
   cell_ids,
   start_year,
@@ -21,7 +21,7 @@ cb_query_effort_detections_occ(
 \arguments{
 \item{species}{Vector of species (CSOW or BDOW)}
 
-\item{template}{BirdNET version used}
+\item{template_used}{BirdNET version used}
 
 \item{study_type}{Vector of study types (e.g., Sierra Monitoring, Sierra Projects)}
 
