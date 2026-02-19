@@ -145,6 +145,8 @@ cb_query_multi_state_occ <- function(species, template_used, study_type, cell_id
   # effort data by day
   efforts_df <-
     efforts_deployments_detections_sql_df |>
+    # there can be multiple calls per hour, so just look at distinct survey effort
+    dplyr::distinct(cell_id, unit_number, survey_year, survey_night, survey_hour) |>
     # now tally (count number of hours) per deployment, year, and survey night
     dplyr::group_by(cell_id, unit_number, survey_year, survey_night) |>
     dplyr::tally(name = 'survey_hours') |>
