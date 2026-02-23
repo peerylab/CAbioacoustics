@@ -6,7 +6,7 @@
 \usage{
 cb_sampling_summary(
   species,
-  template,
+  template_used,
   study_type,
   cell_ids,
   start_year,

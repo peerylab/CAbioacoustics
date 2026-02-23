@@ -14,6 +14,9 @@
 cb_season_dates <- function(study_type, cell_ids, start_year, end_year) {
 
   study <- study_type
+  focal_cells <- cell_ids
+  min_year <- start_year
+  max_year <- end_year
 
   # query acoustic field deployments table
   deployments <-
@@ -37,10 +40,10 @@ cb_season_dates <- function(study_type, cell_ids, start_year, end_year) {
     dplyr::left_join(deployments |> dplyr::rename(acoustic_field_visit_id = id), by = 'acoustic_field_visit_id') |>
     # dplyr::left_join(deployments |> dplyr::rename(acoustic_field_visit_id = id), by = dplyr::join_by('acoustic_field_visit_id')) |>
     dplyr::filter(
-      cell_id %in% cell_ids,
+      cell_id %in% focal_cells,
       study_type %in% study,
-      survey_year >= start_year,
-      survey_year <= end_year,
+      survey_year >= min_year,
+      survey_year <= max_year,
       # keep efforts from 8:00PM to 6:00AM (for owls)
       survey_hour >= '20:00' & survey_hour < '23:59' | survey_hour >= '00:00' & survey_hour < '05:59'
     ) |>

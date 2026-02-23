@@ -13,10 +13,14 @@
 #'
 #' @examples
 
-cb_sampling_summary <- function(species, template, study_type, cell_ids, start_year, end_year) {
+cb_sampling_summary <- function(species, template_used, study_type, cell_ids, start_year, end_year) {
 
   focal_species <- species
-  template_used <- template
+  template <- template_used
+  study <- study_type
+  focal_cells <- cell_ids
+  min_year <- start_year
+  max_year <- end_year
 
   # query acoustic field deployments table
   deployments_sql_df <-
@@ -62,7 +66,7 @@ cb_sampling_summary <- function(species, template, study_type, cell_ids, start_y
     # mutate(survey_year = sql("cast(survey_year as signed)")) |>
     # filter to study type, years, and appropriate survey hours for owls; usfs cells only
     dplyr::filter(
-      cell_id %in% cell_ids,
+      cell_id %in% focal_cells,
       study_type == study,
       survey_year >= start_year,
       survey_year <= end_year,
