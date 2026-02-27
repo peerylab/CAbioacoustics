@@ -6,8 +6,13 @@
 \usage{
 cb_create_pam_project(project_name, base_dir = getwd())
 }
+\arguments{
+\item{project_name}{What to call this coding project}
+
+\item{base_dir}{Where to put the R project}
+}
 \value{
-R project
+R project directory
 }
 \description{
 Create R project directory for processing PAM program data

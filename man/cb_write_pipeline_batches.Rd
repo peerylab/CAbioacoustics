@@ -7,7 +7,9 @@
 cb_write_pipeline_batches(df, output_path)
 }
 \arguments{
-\item{output_path}{}
+\item{df}{Data frame of effort}
+
+\item{output_path}{Where to save it}
 }
 \value{
 csv files of effort (i.e., row for each flac file)

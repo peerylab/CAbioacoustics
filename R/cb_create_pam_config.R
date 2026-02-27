@@ -1,10 +1,10 @@
 
 #' Write configuration parameters for PAM R project
 #'
-#' @param study_year
-#' @param study_type
-#' @param study_drive
-#' @param study_timezone
+#' @param study_year Survey year
+#' @param study_type Study type (e.g., Sierra Monitoring, Coastal Barred)
+#' @param study_drive Drive label (e.g., Z:)
+#' @param study_timezone Timezone of recordings
 #'
 #' @return
 #' @export

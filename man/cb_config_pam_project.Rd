@@ -7,7 +7,13 @@
 cb_config_pam_project(study_year, study_type, study_drive, study_timezone)
 }
 \arguments{
-\item{study_timezone}{}
+\item{study_year}{Survey year}
+
+\item{study_type}{Study type (e.g., Sierra Monitoring, Coastal Barred)}
+
+\item{study_drive}{Drive label (e.g., Z:)}
+
+\item{study_timezone}{Timezone of recordings}
 }
 \description{
 Write configuration parameters for PAM R project

@@ -1,8 +1,8 @@
 
 #' Write effort pipeline csv files
 #'
-#' @param df
-#' @param output_path
+#' @param df Data frame of effort
+#' @param output_path Where to save it
 #'
 #' @return csv files of effort (i.e., row for each flac file)
 #' @export

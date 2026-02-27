@@ -1,7 +1,10 @@
 
 #' Create R project directory for processing PAM program data
 #'
-#' @return R project
+#' @param project_name What to call this coding project
+#' @param base_dir Where to put the R project
+#'
+#' @return R project directory
 #' @export
 #'
 #' @examples
