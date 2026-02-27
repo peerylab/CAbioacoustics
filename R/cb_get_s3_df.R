@@ -29,7 +29,8 @@ cb_get_s3_df <- function(prefix = NULL, include_folders = FALSE) {
       max = Inf
     ) |>
     tibble::as_tibble() |>
-    janitor::clean_names()
+    janitor::clean_names() |>
+    dplyr::mutate(size = as.numeric(size))
 
   # remove folder markers unless explicitly requested
   if (include_folders == FALSE) {
