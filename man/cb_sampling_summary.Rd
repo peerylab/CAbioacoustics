@@ -14,7 +14,20 @@ cb_sampling_summary(
 )
 }
 \arguments{
-\item{end_year}{}
+\item{species}{Species to query (CSOW or BDOW)}
+
+\item{template_used}{Template used}
+
+\item{study_type}{Study type (e.g., Sierra Monitoring)}
+
+\item{cell_ids}{List of cell IDs to query}
+
+\item{start_year}{Start year to query}
+
+\item{end_year}{End year to query}
+}
+\value{
+\code{tibble} of sampling effort statistics
 }
 \description{
 Get summary of sampling effort

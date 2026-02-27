@@ -4,10 +4,10 @@
 \alias{cb_read_gpx}
 \title{Read GPX files from Garmin GPS units}
 \usage{
-cb_read_gpx(x)
+cb_read_gpx(gpx_file)
 }
 \arguments{
-\item{x}{}
+\item{gpx_file}{Path to GPX file}
 }
 \value{
 A \code{sf} \code{POINT} object with GPS point name and datetime

@@ -1,7 +1,7 @@
 
 #' Read GPX files from Garmin GPS units
 #'
-#' @param x
+#' @param gpx_file Path to GPX file
 #'
 #' @return A \code{sf} \code{POINT} object with GPS point name and datetime
 #' @export
@@ -15,9 +15,9 @@
 #' gpx_sf <- cb_read_gpx(gpx_path)
 #' }
 
-cb_read_gpx <- function(x) {
+cb_read_gpx <- function(gpx_file) {
 
-  sf::st_read(x, layer = "waypoints") |>
+  sf::st_read(gpx_file, layer = "waypoints") |>
     dplyr::select(name, time, geometry)
 
 }

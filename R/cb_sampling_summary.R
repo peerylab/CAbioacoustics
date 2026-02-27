@@ -1,14 +1,14 @@
 
 #' Get summary of sampling effort
 #'
-#' @param species
-#' @param template
-#' @param study_type
-#' @param cell_ids
-#' @param start_year
-#' @param end_year
+#' @param species Species to query (CSOW or BDOW)
+#' @param template_used Template used
+#' @param study_type Study type (e.g., Sierra Monitoring)
+#' @param cell_ids List of cell IDs to query
+#' @param start_year Start year to query
+#' @param end_year End year to query
 #'
-#' @return
+#' @return `tibble` of sampling effort statistics
 #' @export
 #'
 #' @examples
