@@ -6,6 +6,9 @@
 \usage{
 cb_set_db_credentials(credentials_path)
 }
+\arguments{
+\item{credentials_path}{Path to csv with database credentials}
+}
 \value{
 Saved passwords in keyring for spotted owl database
 }

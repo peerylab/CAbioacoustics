@@ -1,6 +1,8 @@
 
 #' Establish credentials for the UW spotted owl database
 #'
+#' @param credentials_path Path to csv with database credentials
+#'
 #' @return Saved passwords in keyring for spotted owl database
 #' @export
 #'
