@@ -2,19 +2,27 @@
 % Please edit documentation in R/cb_get_s3_df.R
 \name{cb_get_s3_df}
 \alias{cb_get_s3_df}
-\title{Return a data frame of FLAC and JSON file paths from UW-Madison S3 bucket}
+\title{Return a data frame of S3 bucket contents}
 \usage{
-cb_get_s3_df()
+cb_get_s3_df(prefix = NULL, include_folders = FALSE)
+}
+\arguments{
+\item{prefix}{Search a particular folder or not; default is NULL}
+
+\item{include_folders}{Whether to include folder markers or not; default is FALSE}
 }
 \value{
-A data frame of S3 FLAC and JSON file paths
+A \code{tibble} of S3 keys and metadata
 }
 \description{
-Return a data frame of FLAC and JSON file paths from UW-Madison S3 bucket
+Return a data frame of S3 bucket contents
 }
 \examples{
 \dontrun{
-# return tibble of S3 FLAC and JSON file paths
-s3_flac_df <- cb_get_s3_df()
+# return tibble of S3 keys and metadata for one folder
+nest_video_df <- cb_get_s3_df(prefix = "Nest_Video_Data/")
+
+# or the whole S3 bucket
+s3_df <- cb_get_s3_df()
 }
 }
