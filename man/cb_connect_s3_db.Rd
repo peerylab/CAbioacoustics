@@ -4,10 +4,13 @@
 \alias{cb_connect_s3_db}
 \title{Connect to database containing UW-Madison S3 contents}
 \usage{
-cb_connect_s3_db()
+cb_connect_s3_db(db_path)
+}
+\arguments{
+\item{db_path}{Path to directory containing S3 \code{DuckDB}}
 }
 \value{
-\code{duckdb} connection
+\code{DuckDB} connection
 }
 \description{
 Connect to database containing UW-Madison S3 contents
@@ -15,6 +18,6 @@ Connect to database containing UW-Madison S3 contents
 \examples{
 \dontrun{
 # connect to duckdb of S3 file paths
-cb_connect_s3_db()
+cb_connect_s3_db(db_path = "Z:/Bioacoustics/Acoustic_Code/s3_bucket_contents")
 }
 }
