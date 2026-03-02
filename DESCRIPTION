@@ -73,18 +73,26 @@ Collate:
     'theme_cb.R'
     'utils-pipe.R'
 Imports: 
+    arcgisbinding,
+    arrow,
     av,
     aws.s3,
+    baRcodeR,
     beepr,
     data.table,
     DBI,
     dplyr,
+    duckdb,
+    exactextractr,
+    forcats,
     fs,
     furrr,
     future,
+    ggplot2,
     glue,
     here,
     hms,
+    janitor,
     jsonlite,
     keyring,
     lubridate,
@@ -99,6 +107,9 @@ Imports:
     shiny,
     shinyjs,
     stringr,
+    terra,
     tibble,
     tictoc,
-    tidyr
+    tidyr,
+    usethis,
+    yaml

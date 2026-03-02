@@ -4,10 +4,15 @@
 \alias{cb_build_s3_db}
 \title{Create a database of UW-Madison S3 contents that is easy to query}
 \usage{
-cb_build_s3_db(s3_df)
+cb_build_s3_db(s3_df, db_path)
+}
+\arguments{
+\item{s3_df}{\code{Tibble} of S3 contents from \code{cb_get_s3_df}}
+
+\item{db_path}{Location for storing \code{DuckDB}}
 }
 \value{
-\code{duckdb} containing S3 file paths
+\code{DuckDB} containing S3 file paths in a table called \code{s3_contents}
 }
 \description{
 Create a database of UW-Madison S3 contents that is easy to query
@@ -15,6 +20,6 @@ Create a database of UW-Madison S3 contents that is easy to query
 \examples{
 \dontrun{
 # build database
-cb_build_s3_db(s3_df)
+cb_build_s3_db(s3_df = s3_df, db_path = "Z:/Bioacoustics/s3_bucket_contents")
 }
 }
