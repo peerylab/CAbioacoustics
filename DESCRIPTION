@@ -75,7 +75,6 @@ Collate:
     'theme_cb.R'
     'utils-pipe.R'
 Imports: 
-    arcgisbinding,
     arrow,
     av,
     aws.s3,
@@ -115,3 +114,5 @@ Imports:
     tidyr,
     usethis,
     yaml
+Suggests: 
+    arcgisbinding
