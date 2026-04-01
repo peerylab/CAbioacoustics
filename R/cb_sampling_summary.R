@@ -84,7 +84,7 @@ cb_sampling_summary <- function(species, template_used, study_type, cell_ids, st
     dplyr::select(-survey_date)
 
   # now get survey effort by forest and year
-  forest_effort_df <-
+  unit_name_effort_df <-
     efforts_deployments_detections_sql_df |>
     dplyr::mutate(cell_unit = stringr::str_c(cell_id, unit_number, sep = '_')) |>
     dplyr::distinct() |>
@@ -98,13 +98,13 @@ cb_sampling_summary <- function(species, template_used, study_type, cell_ids, st
       arus = dplyr::n_distinct(cell_unit)
     ) |>
     dplyr::ungroup() |>
-    dplyr::mutate(forest_name = forcats::fct_relevel(unit_name, forests_north_south)) |>
-    dplyr::arrange(forest_name, survey_year) |>
-    dplyr::select(forest_name, survey_year, arus, cells, survey_hours)
+    # dplyr::mutate(forest_name = forcats::fct_relevel(unit_name, forests_north_south)) |>
+    dplyr::arrange(unit_name, survey_year) |>
+    dplyr::select(unit_name, survey_year, arus, cells, survey_hours)
 
   # summarize that for entire sierra nevada
   sierra_effort_df <-
-    forest_effort_df |>
+    unit_name_effort_df |>
     dplyr::group_by(survey_year) |>
     dplyr::summarise(
       arus = sum(arus),
@@ -112,56 +112,56 @@ cb_sampling_summary <- function(species, template_used, study_type, cell_ids, st
       survey_hours = sum(survey_hours)
     ) |>
     dplyr::ungroup() |>
-    dplyr::mutate(forest_name = 'All forests') |>
-    dplyr::select(forest_name, survey_year, arus, cells, survey_hours)
+    dplyr::mutate(unit_name = 'All units') |>
+    dplyr::select(unit_name, survey_year, arus, cells, survey_hours)
 
   # combine in effort df
   effort_summary_df <-
-    forest_effort_df |>
+    unit_name_effort_df |>
     dplyr::bind_rows(sierra_effort_df)
 
-  # get detection summary by forest and year
-  forest_detections_df <-
+  # get detection summary by unit and year
+  unit_name_detections_df <-
     efforts_deployments_detections_sql_df |>
     # had to add this here as filter not working on a sql table
     dplyr::collect() |>
     dplyr::filter(detection == 1) |>
     # dplyr::collect() |>
     # dplyr::left_join(cb_get_spatial('sierra_hexes') |> dplyr::select(cell_id, forest_name = ownership) |> sf::st_drop_geometry(), by = dplyr::join_by('cell_id')) |>
-    dplyr::left_join(cb_get_spatial('sierra_hexes') |> dplyr::select(cell_id, forest_name = unit_name) |> sf::st_drop_geometry(), by = 'cell_id') |>
-    dplyr::group_by(survey_year, forest_name) |>
+    dplyr::left_join(cb_get_spatial('sierra_hexes') |> dplyr::select(cell_id, unit_name) |> sf::st_drop_geometry(), by = 'cell_id') |>
+    dplyr::group_by(survey_year, unit_name) |>
     dplyr::summarise(
       n_detections = sum(detection)
     ) |>
     # dplyr::mutate(n_detections = as.integer(n_detections)) |>
     dplyr::ungroup() |>
-    dplyr::mutate(forest_name = forcats::fct_relevel(forest_name, forests_north_south)) |>
-    dplyr::arrange(forest_name, survey_year) |>
-    dplyr::select(forest_name, survey_year, n_detections)
+    # dplyr::mutate(forest_name = forcats::fct_relevel(forest_name, forests_north_south)) |>
+    dplyr::arrange(unit_name, survey_year) |>
+    dplyr::select(unit_name, survey_year, n_detections)
 
   # summarize this across entire sierra nevada
   sierra_detections_df <-
-    forest_detections_df |>
+    unit_name_detections_df |>
     dplyr::group_by(survey_year) |>
     dplyr::summarise(
       n_detections = sum(n_detections)
     ) |>
     dplyr::ungroup() |>
-    dplyr::mutate(forest_name = 'All forests') |>
-    dplyr::select(forest_name, survey_year, n_detections)
+    dplyr::mutate(unit_name = 'All units') |>
+    dplyr::select(unit_name, survey_year, n_detections)
 
   # combine detection summaries
   detections_summary_df <-
-    forest_detections_df |>
+    unit_name_detections_df |>
     dplyr::bind_rows(sierra_detections_df)
 
   # combine effort and detection summaries
   sampling_summary_df <-
     effort_summary_df |>
     # dplyr::left_join(detections_summary_df, by = dplyr::join_by('forest_name', 'survey_year')) |>
-    dplyr::left_join(detections_summary_df, by = c('forest_name', 'survey_year')) |>
+    dplyr::left_join(detections_summary_df, by = c('unit_name', 'survey_year')) |>
     # clean up
-    dplyr::mutate(forest_name = stringr::str_remove(forest_name, ' National Forest'))
+    dplyr::mutate(unit_name = stringr::str_remove(unit_name, ' National Forest| National Park'))
 
   return(sampling_summary_df)
 
