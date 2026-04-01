@@ -159,9 +159,9 @@ cb_sampling_summary <- function(species, template_used, study_type, cell_ids, st
   sampling_summary_df <-
     effort_summary_df |>
     # dplyr::left_join(detections_summary_df, by = dplyr::join_by('forest_name', 'survey_year')) |>
-    dplyr::left_join(detections_summary_df, by = c('unit_name', 'survey_year')) |>
+    dplyr::left_join(detections_summary_df, by = c('unit_name', 'survey_year')) # |>
     # clean up
-    dplyr::mutate(unit_name = stringr::str_remove(unit_name, ' National Forest| National Park'))
+    # dplyr::mutate(unit_name = stringr::str_remove(unit_name, ' National Forest| National Park'))
 
   return(sampling_summary_df)
 
