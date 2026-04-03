@@ -33,7 +33,7 @@ cb_create_pam_project <- function(project_name, base_dir = getwd()) {
     "04-post_birdnet"
   )
 
-  message(glue("Creating project at: {proj_path}"))
+  message(glue::glue("Creating project at: {proj_path}"))
 
   # create project
   if (!fs::dir_exists(proj_path)) {
