@@ -44,6 +44,7 @@ cb_read_field_maps <- function(feature_layer, time_zone = "America/Los_Angeles")
   ) |>
     janitor::clean_names() |>
     dplyr::select(
+      objectid,
       creation_date,
       deployment_or_recovery,
       deployed_by,
