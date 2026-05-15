@@ -5,18 +5,45 @@
 \title{Use \code{robocopy} to copy audio data from external hard drives}
 \usage{
 cb_robocopy(
-  source,
+  source_drive,
   destination,
   threads = 16,
   retries = 3,
   wait = 5,
-  log_file,
-  show_output = TRUE
+  log_dir,
+  exclude_recycle = TRUE,
+  verbose = TRUE
 )
 }
 \arguments{
-\item{show_output}{}
+\item{source_drive}{Hard drive letter}
+
+\item{destination}{Directory to copy hard drive files}
+
+\item{threads}{Number of threads to use; for HDD may be better to use 8; SSD 16 or 32?}
+
+\item{retries}{Number of times to retry copying a file if it fails}
+
+\item{wait}{Time in seconds to wait for retry}
+
+\item{log_dir}{Directory to store log files}
+
+\item{exclude_recycle}{Exclude RECYCLE BIN files}
+
+\item{verbose}{Print log output in console, or hide it}
 }
 \description{
 Use \code{robocopy} to copy audio data from external hard drives
+}
+\examples{
+\dontrun{
+cb_robocopy(
+source_drive = "D:",
+destination = "C:/Users/jmwin/Documents/audio_data_backup",
+threads = 16,
+log_dir = "C:/Users/jmwin/Documents",
+exclude_recycle = TRUE,
+verbose = TRUE
+)
+}
 }
