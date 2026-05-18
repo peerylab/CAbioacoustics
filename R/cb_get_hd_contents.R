@@ -32,7 +32,7 @@ cb_get_hd_contents <- function(drive_path, output_dir) {
     dplyr::mutate(size_num = as.numeric(size))
 
   # print volume label and number of flacs
-  vol_label <- get_volume_label(stringr::str_remove(drive_path, '/'))
+  vol_label <- CAbioacoustics:::get_volume_label(stringr::str_remove(drive_path, '/'))
   message(stringr::str_glue('{vol_label}: {nrow(df)} flacs'))
 
   # write to output location with volume label

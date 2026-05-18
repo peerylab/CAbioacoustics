@@ -16,12 +16,12 @@
 #' @examples
 #' \dontrun{
 #' cb_robocopy(
-#' source_drive = "D:",
-#' destination = "C:/Users/jmwin/Documents/audio_data_backup",
-#' threads = 16,
-#' log_dir = "C:/Users/jmwin/Documents",
-#' exclude_recycle = TRUE,
-#' verbose = TRUE
+#'   source_drive = "D:",
+#'   destination = "C:/Users/jmwin/Documents/audio_data_backup",
+#'   threads = 16,
+#'   log_dir = "C:/Users/jmwin/Documents",
+#'   exclude_recycle = TRUE,
+#'   verbose = TRUE
 #' )
 #' }
 
