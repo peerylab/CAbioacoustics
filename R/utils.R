@@ -444,8 +444,9 @@ get_surveyor_overlap <- function(df, human_hoots) {
   # and buffer by 1.5 km to determine if there's surveyor overlap
   focal_deployment_sf <-
     focal_deployment_df |>
-    dplyr::group_split(utm_zone) |>
-    purrr::map_dfr(cb_make_aru_sf) |>
+    # dplyr::group_split(utm_zone) |>
+    # purrr::map_dfr(cb_make_aru_sf) |>
+    cb_make_aru_sf() |>
     sf::st_transform(3310) |>
     sf::st_buffer(dist = 1500)
 
