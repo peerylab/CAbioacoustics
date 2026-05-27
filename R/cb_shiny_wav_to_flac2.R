@@ -169,7 +169,8 @@ cb_shiny_wav_to_flac2 <- function() {
 
       }
 
-      val <- get_deployment_info(
+      val <-
+        CAbioacoustics:::get_deployment_info2(
         input$sd_card_path,
         input$year
       )

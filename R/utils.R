@@ -614,6 +614,57 @@ get_deployment_info <- function(sd_card_path, year) {
 
 }
 
+get_deployment_info2 <- function(sd_card_path, year) {
+
+  # wav count
+  n_wavs <- length(fs::dir_ls(sd_card_path, recurse = TRUE, glob = '*.wav'))
+
+  # recording dates
+  min_date <-
+    fs::dir_ls(sd_card_path, recurse = TRUE, glob = '*.wav') |>
+    stringr::str_extract('[0-9]{8}') |>
+    lubridate::ymd() |>
+    min()
+
+  max_date <-
+    fs::dir_ls(sd_card_path, recurse = TRUE, glob = '*.wav') |>
+    stringr::str_extract('[0-9]{8}') |>
+    lubridate::ymd() |>
+    max()
+
+  # deployment_name
+  swift <-
+    sd_card_path |>
+    pull(path) |>
+    stringr::str_subset('S[0-9]{4}') |>
+    head(1) |>
+    stringr::str_extract('S[0-9]{4}')
+
+  cb_connect_db()
+
+  focal_deployment <-
+    conn |>
+    dplyr::tbl('acoustic_field_visits') |>
+    dplyr::filter(stringr::str_detect(swift_id, swift) & survey_year == year) |>
+    dplyr::mutate(days_away = abs(deploy_date - min_date)) |>
+    dplyr::arrange(days_away) |>
+    dplyr::collect() |>
+    dplyr::slice(1) |>
+    dplyr::pull(deployment_name)
+
+  cb_disconnect_db()
+
+  tibble::tibble(
+    n_wavs = n_wavs,
+    min_date = format(min_date, "%B %d"),
+    max_date = format(max_date, "%B %d"),
+    deployment_name = focal_deployment,
+    swift_id = swift
+  )
+
+}
+
+
 create_subfolders <- function(x, deployment_name, hard_drive_path) {
 
   fs::dir_create(
