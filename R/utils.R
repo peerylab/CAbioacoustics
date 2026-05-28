@@ -634,8 +634,12 @@ get_deployment_info2 <- function(sd_card_path, year) {
 
   # deployment_name
   swift <-
-    sd_card_path |>
-    pull(path) |>
+    # sd_card_path |>
+    # dplyr::pull(path) |>
+    # stringr::str_subset('S[0-9]{4}') |>
+    # head(1) |>
+    # stringr::str_extract('S[0-9]{4}')
+    fs::dir_ls(sd_card_path) |>
     stringr::str_subset('S[0-9]{4}') |>
     head(1) |>
     stringr::str_extract('S[0-9]{4}')
