@@ -35,9 +35,10 @@ cb_shiny_wav_to_flac <- function() {
           selected = "E:/"
         ),
         shiny::selectInput(
-          "year", "Survey year:",
-          choices = c("2021" = 2021, "2022" = 2022, "2023" = 2023, "2024" = 2024, "2025" = 2025),
-          selected = "2025"
+          "year",
+          "Survey year:",
+          choices = 2021:as.integer(format(Sys.Date(), "%Y")),
+          selected = as.integer(format(Sys.Date(), "%Y"))
         ),
         shiny::selectInput(
           "processing", "Processing:",
