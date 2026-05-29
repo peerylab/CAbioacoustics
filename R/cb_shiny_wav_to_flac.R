@@ -103,7 +103,7 @@ cb_shiny_wav_to_flac <- function() {
     shiny::observeEvent(input$run_button, {
 
       # get deployment information from SD card
-      val <- CAbioacoustics:::get_deployment_info2(input$sd_card_path, input$year)
+      val <- CAbioacoustics:::get_deployment_info(input$sd_card_path, input$year)
 
       # get list of wav paths
       sd_wavs <- fs::dir_ls(input$sd_card_path, recurse = TRUE, glob = '*.wav')
