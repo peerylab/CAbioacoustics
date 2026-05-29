@@ -71,7 +71,6 @@ Collate:
     'cb_set_future_cores.R'
     'cb_set_s3_credentials.R'
     'cb_shiny_wav_to_flac.R'
-    'cb_shiny_wav_to_flac2.R'
     'cb_show_globus_endpoints.R'
     'cb_update_birdnet_db.R'
     'cb_write_pipeline_batches.R'
