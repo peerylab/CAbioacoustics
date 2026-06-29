@@ -32,8 +32,8 @@ download.file(
 )
 
 # play the audio with SoX (this function can also play wavs)
-cb_play_flac(
-  flac_path = tmp_file,
+cb_play_audio(
+  audio_path = tmp_file,
   begin_time = 0,
   end_time = 10
 )
