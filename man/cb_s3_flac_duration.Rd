@@ -7,7 +7,7 @@
 cb_s3_flac_duration(object)
 }
 \arguments{
-\item{path}{}
+\item{object}{}
 }
 \description{
 Get duration of FLAC files stored on S3
