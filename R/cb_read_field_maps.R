@@ -12,9 +12,6 @@
 #' library(sf)
 #' library(arcgisbinding)
 #'
-#' # connect to ArcGIS Pro
-#' arc.check_product()
-#'
 #' # read ARUs deployments entered using Field Maps
 #' aru_field_maps_deployments_df <-
 #'   cb_read_field_maps("https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/aru_deployments_recoveries/FeatureServer/0") |>
@@ -31,17 +28,8 @@
 
 cb_read_field_maps <- function(feature_layer, time_zone = "America/Los_Angeles") {
 
-  # make sure there's arcgis pro on your computer and it connects
-  print(arcgisbinding::arc.check_product())
-
-  # read now as sf object
-  arcgisbinding::arc.data2sf(
-    arcgisbinding::arc.select(
-      arcgisbinding::arc.open(
-        feature_layer
-      )
-    )
-  ) |>
+  arcgislayers::arc_open(feature_layer) |>
+    arcgislayers::arc_select() |>
     janitor::clean_names() |>
     dplyr::select(
       objectid,
