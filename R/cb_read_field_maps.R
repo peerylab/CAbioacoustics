@@ -10,7 +10,11 @@
 #' \dontrun{
 #' library(tidyverse)
 #' library(sf)
-#' library(arcgisbinding)
+#' library(arcgis)
+#'
+#' # connect to AGOL
+#' token <- auth_binding()
+#' set_arc_token(token)
 #'
 #' # read ARUs deployments entered using Field Maps
 #' aru_field_maps_deployments_df <-
