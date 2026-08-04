@@ -382,12 +382,17 @@ usethis::use_data(group_region_df, overwrite = TRUE)
 # for extracting deployment names
 # allow for 5-digit cell ID with NSO grid
 deployment_string <- 'G(P|R|C|M|0)[0-9]{2}_V[1-5]{1}_C[0-9]{4}_U[1-5]{1}|GN[0-9]{2}_V[1-5]{1}_C[0-9]{5}_U[1-5]{1}'
-
 usethis::use_data(deployment_string, overwrite = TRUE)
 
 
 # group string ------------------------------------------------------------
 
 group_string <- 'G(P|R|C|M|N|0)[0-9]{2}'
-
 usethis::use_data(group_string, overwrite = TRUE)
+
+
+# study types -------------------------------------------------------------
+
+acoustic_study_types <- 'Sierra_Monitoring|Sierra_Projects|Coastal_Barred|SoCal|Sierra_Removal|NSO|Modoc_Projects'
+usethis::use_data(acoustic_study_types, overwrite = TRUE)
+
