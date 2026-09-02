@@ -641,8 +641,9 @@ get_deployment_info <- function(sd_card_path, year) {
     # stringr::str_extract('S[0-9]{4}')
     fs::dir_ls(sd_card_path) |>
     stringr::str_subset('S[0-9]{4}') |>
-    head(1) |>
-    stringr::str_extract('S[0-9]{4}')
+    as.character() |>
+    stringr::str_extract('S[0-9]{4}') |>
+    unique()
 
   cb_connect_db()
 
@@ -650,7 +651,7 @@ get_deployment_info <- function(sd_card_path, year) {
     conn |>
     dplyr::tbl('acoustic_field_visits') |>
     dplyr::filter(stringr::str_detect(swift_id, swift) & survey_year == year) |>
-    dplyr::mutate(days_away = abs(deploy_date - min_date)) |>
+    dplyr::mutate(days_away = abs(deploy_date - lubridate::as_date(min_date))) |>
     dplyr::arrange(days_away) |>
     dplyr::collect() |>
     dplyr::slice(1) |>
