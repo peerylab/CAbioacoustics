@@ -31,7 +31,7 @@ cb_list_s3_files <- function(bucket, url, output_file) {
       "s3api", "list-objects-v2",
       "--bucket", bucket,
       "--endpoint-url", url,
-      "--query", "Contents[].Key",
+      "--query", "Contents[].[Key,Size]",
       "--output", "text"
     ),
     stdout = output_file
