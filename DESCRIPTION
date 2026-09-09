@@ -46,6 +46,7 @@ Collate:
     'cb_globus_transfer.R'
     'cb_json_file_structure.R'
     'cb_list_db_tables.R'
+    'cb_list_s3_files.R'
     'cb_logistic_to_threshold.R'
     'cb_logit_to_confidence.R'
     'cb_make_aru_sf.R'
