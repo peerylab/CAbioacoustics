@@ -803,3 +803,30 @@ cb_get_flac_header <- function(object) {
   hdr
 
 }
+
+# update s3 database scans
+update_last_run <- function(file) {
+
+  lines <- readLines(file)
+
+  timestamp <-
+    paste0(
+      "Last run: ",
+      format(Sys.time(), "%Y-%m-%d %H:%M:%S %Z")
+    )
+
+  # Replace an existing line starting with "Last run:"
+  if (any(grepl("^Last run:", lines))) {
+
+    lines[grepl("^Last run:", lines)] <- timestamp
+
+  } else {
+
+    # Or insert at the top
+    lines <- c(timestamp, "", lines)
+
+  }
+
+  writeLines(lines, file)
+
+}
