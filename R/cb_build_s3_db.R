@@ -22,13 +22,7 @@ cb_build_s3_db <- function(s3_df, db_path) {
   s3_template <-
     tibble::tibble(
       key = as.character(NA),
-      last_modified = as.character(NA),
-      e_tag = as.character(NA),
-      size = as.numeric(NA),
-      owner_id = as.character(NA),
-      owner_display_name = as.character(NA),
-      storage_class = as.character(NA),
-      bucket = as.character(NA)
+      size = as.numeric(NA)
     )
 
   # create these tables in the database
