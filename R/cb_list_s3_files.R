@@ -4,6 +4,7 @@
 #' @param bucket S3 bucket name
 #' @param url S3 url
 #' @param output_file Text file of S3 keys
+#' @param stderr Suppress messages or not (default is FALSE)
 #'
 #' @returns A `tibble` of S3 keys and metadata
 #' @export
@@ -23,7 +24,7 @@
 #' tictoc::toc()
 #' }
 
-cb_list_s3_files <- function(bucket, url, output_file) {
+cb_list_s3_files <- function(bucket, url, output_file, stderr = FALSE) {
 
   system2(
     "aws",
@@ -35,7 +36,8 @@ cb_list_s3_files <- function(bucket, url, output_file) {
       "--output", "text",
       "--no-verify-ssl"
     ),
-    stdout = output_file
+    stdout = output_file,
+    stderr = stderr
   )
 
   invisible(output_file)

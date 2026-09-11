@@ -4,7 +4,7 @@
 \alias{cb_list_s3_files}
 \title{Get a list of S3 keys using AWS CLI}
 \usage{
-cb_list_s3_files(bucket, url, output_file)
+cb_list_s3_files(bucket, url, output_file, stderr = FALSE)
 }
 \arguments{
 \item{bucket}{S3 bucket name}
@@ -12,6 +12,8 @@ cb_list_s3_files(bucket, url, output_file)
 \item{url}{S3 url}
 
 \item{output_file}{Text file of S3 keys}
+
+\item{stderr}{Suppress messages or not (default is FALSE)}
 }
 \value{
 A \code{tibble} of S3 keys and metadata
