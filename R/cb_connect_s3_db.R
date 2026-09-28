@@ -12,7 +12,7 @@
 #' cb_connect_s3_db(db_path = "Z:/Bioacoustics/Acoustic_Code/s3_bucket_contents")
 #' }
 
-cb_connect_s3_db <- function(db_path) {
+cb_connect_s3_db <- function(db_path = 'Z:/Bioacoustics/Acoustic_Code/s3_bucket_contents') {
 
   # connect to local s3 database
   conn_s3 <<- DBI::dbConnect(duckdb::duckdb(dbdir = stringr::str_glue("{db_path}/s3_files.duckdb")))

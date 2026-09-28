@@ -4,7 +4,7 @@
 \alias{cb_connect_s3_db}
 \title{Connect to database containing UW-Madison S3 contents}
 \usage{
-cb_connect_s3_db(db_path)
+cb_connect_s3_db(db_path = "Z:/Bioacoustics/Acoustic_Code/s3_bucket_contents")
 }
 \arguments{
 \item{db_path}{Path to directory containing S3 \code{DuckDB}}
