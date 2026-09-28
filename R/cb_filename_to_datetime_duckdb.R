@@ -9,36 +9,34 @@
 #'
 #' @examples
 
-cb_filename_to_datetime_duckdb <- function(x, type = c('datetime', 'date')) {
+cb_filename_to_datetime_duckdb <- function(x, type = c("datetime", "date")) {
 
-  # datetime
-  if (type == 'datetime') {
+  type <- match.arg(type)
 
-    dbplyr::sql("
-      strptime(
-        regexp_replace(
-          regexp_extract(x, '[0-9]{8}_[0-9]{6}'),
-          '_',
-          ''
-        ),
-        '%Y%m%d%H%M%S'
-      )
-    ")
+  x <- rlang::as_name(rlang::ensym(x))
 
-    # date
-  } else if (type == 'date') {
+  datetime <-
+    paste0(
+      "strptime(",
+      "NULLIF(",
+      "regexp_replace(",
+      "regexp_extract(", x, ", '[0-9]{8}_[0-9]{6}')",
+      ", '_', ''",
+      ")",
+      ", ''",
+      "), ",
+      "'%Y%m%d%H%M%S'",
+      ")"
+    )
 
-    lubridate::as_date(
-      dbplyr::sql("
-      strptime(
-        regexp_replace(
-          regexp_extract(x, '[0-9]{8}_[0-9]{6}'),
-          '_',
-          ''
-        ),
-        '%Y%m%d%H%M%S'
-      )
-    ")
+  if (type == "datetime") {
+
+    dbplyr::sql(datetime)
+
+  } else {
+
+    dbplyr::sql(
+      paste0("CAST(", datetime, " AS DATE)")
     )
 
   }
