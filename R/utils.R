@@ -831,7 +831,7 @@ update_last_run <- function(file) {
 
 }
 
-
+# get year from keys in s3 duckdb
 extract_year_s3_duckdb <- function(key) {
 
   dbplr::sql("
@@ -840,5 +840,12 @@ extract_year_s3_duckdb <- function(key) {
     AS INTEGER
       )
     ")
+
+}
+
+# get basename from keys in s3 duckdb
+basename_s3_duckdb <- function(key) {
+
+  dbplyr::sql("parse_filename(key)")
 
 }
