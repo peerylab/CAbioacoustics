@@ -830,3 +830,15 @@ update_last_run <- function(file) {
   writeLines(lines, file)
 
 }
+
+
+extract_year_s3_duckdb <- function(key) {
+
+  dbplr::sql("
+  CAST(
+    NULLIF(regexp_extract(key, '/(\\d{4})/', 1), '')
+    AS INTEGER
+      )
+    ")
+
+}
