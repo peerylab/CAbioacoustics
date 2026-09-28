@@ -834,7 +834,7 @@ update_last_run <- function(file) {
 # get year from keys in s3 duckdb
 extract_year_s3_duckdb <- function(key) {
 
-  dbplr::sql("
+  dbplyr::sql("
   CAST(
     NULLIF(regexp_extract(key, '/(\\d{4})/', 1), '')
     AS INTEGER
