@@ -1,6 +1,7 @@
 
 #' Get duration of FLAC files (in seconds) stored on S3
 #'
+#' @param s3 S3 endpoint
 #' @param object S3 key
 #' @param metadata If FALSE, return just FLAC file duration
 #'
@@ -9,7 +10,7 @@
 #'
 #' @examples
 
-cb_flac_duration_s3 <- function(object, metadata = FALSE) {
+cb_flac_duration_s3 <- function(s3, object, metadata = FALSE) {
 
   obj <- s3$get_object(
     Bucket = "mpeery-archive",
