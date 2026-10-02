@@ -10,7 +10,7 @@
 #'
 #' @examples
 
-cb_flac_duration_s3 <- function(s3, object, metadata = FALSE) {
+cb_flac_duration_s3 <- function(s3 = s3, object, metadata = FALSE) {
 
   obj <- s3$get_object(
     Bucket = "mpeery-archive",

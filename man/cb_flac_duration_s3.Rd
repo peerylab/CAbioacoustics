@@ -4,7 +4,7 @@
 \alias{cb_flac_duration_s3}
 \title{Get duration of FLAC files (in seconds) stored on S3}
 \usage{
-cb_flac_duration_s3(s3, object, metadata = FALSE)
+cb_flac_duration_s3(s3 = s3, object, metadata = FALSE)
 }
 \arguments{
 \item{s3}{S3 endpoint}
