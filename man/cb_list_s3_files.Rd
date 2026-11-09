@@ -4,7 +4,7 @@
 \alias{cb_list_s3_files}
 \title{Get a list of S3 keys using AWS CLI}
 \usage{
-cb_list_s3_files(bucket, url, output_file, stderr = FALSE)
+cb_list_s3_files(bucket, url, output_file, prefix = NULL, stderr = FALSE)
 }
 \arguments{
 \item{bucket}{S3 bucket name}
@@ -12,6 +12,8 @@ cb_list_s3_files(bucket, url, output_file, stderr = FALSE)
 \item{url}{S3 url}
 
 \item{output_file}{Text file of S3 keys}
+
+\item{prefix}{Check particular part of folder of a bucket}
 
 \item{stderr}{Suppress messages or not (default is FALSE)}
 }
@@ -27,12 +29,19 @@ bucket <- "mpeery-archive"
 url <- "https://s3.drive.wisc.edu"
 output_file <- "C:/Users/jwiniarski/Desktop/s3_files.txt"
 
-tictoc::tic()
+# check entire bucket
 cb_list_s3_files(
   bucket = bucket,
   url = url,
   output_file = output_file
   )
-tictoc::toc()
+
+# check part of bucket
+cb_list_s3_files(
+  bucket = bucket,
+  url = url,
+  prefix = 'Acoustic_Data/ARU_Data_Processed/BirdNET_Results_JSON/JSON_Sierra_Monitoring/2025',
+  output_file = output_file
+  )
 }
 }
