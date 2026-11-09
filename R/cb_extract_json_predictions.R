@@ -39,7 +39,8 @@
 #'   )
 #' }
 
-cb_extract_json_predictions <- function(json, threshold_df, predictions_output, log_output) {
+cb_extract_json_predictions <- function(json, threshold_df, predictions_output, log_output,
+                                        bucket = NULL, base_url = NULL) {
 
   # get name of file first for saving things later
   json_name <-
@@ -56,7 +57,7 @@ cb_extract_json_predictions <- function(json, threshold_df, predictions_output, 
   # try reading and parsing JSON
   json_df <-
     tryCatch({
-      jsonlite::fromJSON(json) |>
+      cb_read_json_gz(json, bucket = bucket, base_url = base_url) |>   # <- only change
         tibble::enframe() |>
         dplyr::filter(name == 'detections') |>
         tidyr::unnest_longer(value) |>

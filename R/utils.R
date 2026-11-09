@@ -849,3 +849,27 @@ basename_s3_duckdb <- function(key) {
   dbplyr::sql("parse_filename(key)")
 
 }
+
+
+cb_read_json_gz <- function(json, bucket = NULL, base_url = NULL) {
+
+  if (is.null(bucket)) {
+
+    # local file: jsonlite handles .gz paths directly
+    return(jsonlite::fromJSON(json))
+
+  }
+
+  # S3: pull the object into memory, decompress, parse
+  raw_obj <-
+    aws.s3::get_object(
+      object    = json,
+      bucket    = bucket,
+      base_url  = base_url,
+      region    = "",
+      use_https = TRUE
+    )
+
+  jsonlite::fromJSON(rawToChar(memDecompress(raw_obj, type = "gzip")))
+
+}

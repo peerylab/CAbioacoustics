@@ -4,7 +4,14 @@
 \alias{cb_extract_json_predictions}
 \title{Extract predictions from JSON files using species-specific threshold values}
 \usage{
-cb_extract_json_predictions(json, threshold_df, predictions_output, log_output)
+cb_extract_json_predictions(
+  json,
+  threshold_df,
+  predictions_output,
+  log_output,
+  bucket = NULL,
+  base_url = NULL
+)
 }
 \arguments{
 \item{json}{Path to JSON file}
